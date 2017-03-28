@@ -4,19 +4,31 @@ body {
   background-repeat: no-repeat;
   background-position: top;
   display: block;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.text-input {
+    margin:10px auto;
+    width:80%;
+    padding: 5px 12px 10px 5px;
+    text-align: center;
+    font: 13px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 
 .main-window {
   width:400px;
   height:300px;
   margin:auto;
-  display:block;
+  display:table;
   vertical-align: middle;
   border:1px solid #fff;
-  background-color:rgba(255,255,255,0.5);
+  color:#fff;
+  background-color:rgba(0,0,0,0.5);
 }
 
 .login-container {
   margin:20px;
   vertical-align: middle;
+  text-align: center;
+  display: table-cell;
 }
