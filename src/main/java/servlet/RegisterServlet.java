@@ -25,22 +25,18 @@ public class RegisterServlet extends HttpServlet {
     String lastName = "";
     String email = "";
     String role = "";
-    String name = "";
+    String fullName = "";
     String pass = "";
     String pass2 = "";
     
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         firstName = request.getParameter("first-name");
         lastName = request.getParameter("last-name");
-        //name = firstName + " " + lastName;
+        fullName = firstName + " " + lastName;
         email = request.getParameter("email");
         pass = request.getParameter("pass");
         pass2 = request.getParameter("pass2");
         role = request.getParameter("role");
-        
-        
-        //TODO: Remove dis
-        System.out.println(request.getParameter("pass"));
         
         //Password does not match
         if(pass.equals(pass2))
@@ -78,11 +74,13 @@ public class RegisterServlet extends HttpServlet {
         
         for (User u: data.getUserList())
         {
+        	System.out.println(u);
+        	
             if(u.getEmailAddress().equals(email))
             {
                 request.setAttribute("message", "<div class=\"error\"> ERROR: E-mail address already registered  </div>");
             }else {
-            	data.addUser(role, name, email, pass);
+            	data.addUser(firstName, lastName, email, role, pass);
             }
         }
         
