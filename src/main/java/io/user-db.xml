@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <users>
 	
-<user email="gmail" name="name123" password="asdasdasd" role="student"/>
-<user email="gmail1" name="name" password="211" role="mentor"/>
 </users>
