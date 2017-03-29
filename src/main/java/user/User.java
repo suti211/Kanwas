@@ -1,5 +1,7 @@
 package user;
 
+import io.PersistentStorage;
+
 public abstract class User {
 	private String name;
 	private String emailAddress;	
@@ -26,6 +28,9 @@ public abstract class User {
 			role = "mentor";
 		else
 			role = "student";
+		
+		PersistentStorage ps = new PersistentStorage("src/main/java/io/user-db.xml");
+		ps.modifyUser(this);		
 	}
 	
 	public String getPassword() {
@@ -42,6 +47,9 @@ public abstract class User {
 
 	public void setName(String name) {
 		this.name = name;
+
+		PersistentStorage ps = new PersistentStorage("src/main/java/io/user-db.xml");
+		ps.modifyUser(this);
 	}
 
 	public String getEmailAddress() {
