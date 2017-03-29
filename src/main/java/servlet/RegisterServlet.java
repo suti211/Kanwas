@@ -33,20 +33,20 @@ public class RegisterServlet extends HttpServlet {
         }
         else
         {
-            notValidPassword();
+            notValidPassword(request);
         }
         role = request.getParameter("rule");
 
         Data data = Data.newInstance();
-        data.addUser(role, name, email, password);
+        data.addUser(role, name, email,"", password);
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
-    protected void notValidPassword()
+    protected void notValidPassword(HttpServletRequest request)
     {
-
+        request.setAttribute("message", "<div class=\"error\"> ERROR: Apadfasza adj jelszót </div>");
     }
 }
