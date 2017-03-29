@@ -3,21 +3,24 @@ package user;
 import io.PersistentStorage;
 
 public abstract class User {
-	private String name;
+	private String firstName;
+	private String lastName;
 	private String emailAddress;	
 	private String password;	
 	private String role;
 	
-	public User(String name, String emailAddress, String role) {
+	public User(String firstName, String lastName, String emailAddress, String role) {
 		super();
-		this.name = name;
+		this.firstName = firstName;
+		this.lastName = lastName;
 		this.emailAddress = emailAddress;
 		this.role = role;
 	}
 	
-	public User(String name, String emailAddress, String role, String password) {
+	public User(String firstName, String lastName, String emailAddress, String role, String password) {
 		super();
-		this.name = name;
+		this.firstName = firstName;
+		this.lastName = lastName;
 		this.emailAddress = emailAddress;
 		this.role = role;
 		this.password = password;
@@ -41,12 +44,28 @@ public abstract class User {
 		return role;
 	}
 
-	public String getName() {
-		return name;
+	public String getFirstName() {
+		return firstName;
+	}
+	
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public String getFullName()
+	{
+		return firstName + " " + lastName;
+	}
+	
+	public void setFirstName(String name) {
+		this.firstName = name;
+
+		PersistentStorage ps = new PersistentStorage("src/main/java/io/user-db.xml");
+		ps.modifyUser(this);
+	}
+	
+	public void setLastName(String name) {
+		this.lastName = name;
 
 		PersistentStorage ps = new PersistentStorage("src/main/java/io/user-db.xml");
 		ps.modifyUser(this);
@@ -58,7 +77,7 @@ public abstract class User {
 
 	@Override
 	public String toString() {
-		return "User [name=" + name + ", emailAddress=" + emailAddress + ", password=" + password + ", role=" + role
+		return "User [name=" + getFullName() + ", emailAddress=" + emailAddress + ", password=" + password + ", role=" + role
 				+ "]";
 	}
 	

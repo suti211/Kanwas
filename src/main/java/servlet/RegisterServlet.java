@@ -75,12 +75,14 @@ public class RegisterServlet extends HttpServlet {
        
 
         Data data = Data.newInstance();
-        //data.addUser(role, name, email,"", pass);
+        
         for (User u: data.getUserList())
         {
             if(u.getEmailAddress().equals(email))
             {
                 request.setAttribute("message", "<div class=\"error\"> ERROR: E-mail address already registered  </div>");
+            }else {
+            	data.addUser(role, name, email, pass);
             }
         }
         
