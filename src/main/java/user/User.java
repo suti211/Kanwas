@@ -27,6 +27,14 @@ public abstract class User {
 		else
 			role = "student";
 	}
+	
+	public String getPassword() {
+		return password;
+	}
+
+	public String getRole() {
+		return role;
+	}
 
 	public String getName() {
 		return name;
