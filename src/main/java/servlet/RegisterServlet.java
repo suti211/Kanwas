@@ -1,6 +1,7 @@
 package servlet;
 
 import data.Data;
+import user.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -75,6 +76,13 @@ public class RegisterServlet extends HttpServlet {
 
         Data data = Data.newInstance();
         //data.addUser(role, name, email,"", pass);
+        for (User u: data.getUserList())
+        {
+            if(u.getEmailAddress().equals(email))
+            {
+                request.setAttribute("message", "<div class=\"error\"> ERROR: E-mail address already registered  </div>");
+            }
+        }
         
         request.getRequestDispatcher("/register.jsp").forward(request, response);
     }
