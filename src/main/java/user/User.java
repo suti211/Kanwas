@@ -48,8 +48,12 @@ public abstract class User {
 	public void setName(String name) {
 		this.name = name;
 
-		PersistentStorage ps = new PersistentStorage("src/main/java/io/user-db.xml");
-		ps.modifyUser(this);
+		PersistentStorage ps = PersistentStorage.newInstance("src/main/java/io/user-db.xml");
+		try {
+			ps.modifyUser(this);			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public String getEmailAddress() {
