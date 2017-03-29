@@ -43,6 +43,22 @@ public class Data {
 		}
 	}
 	
+	public User getUserbyName(String name){
+		for (User user : users) {
+			if(user.getName().equals(name))
+				return user;
+		}
+		return null;
+	}
+	
+	public User getUserbyEmail(String emailAddress){
+		for (User user : users) {
+			if(user.getEmailAddress().equals(emailAddress))
+				return user;
+		}
+		return null;
+	}
+	
 	
 	
 }
