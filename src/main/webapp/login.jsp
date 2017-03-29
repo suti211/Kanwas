@@ -26,14 +26,16 @@
         <center><img src="./images/logo.png" width="250px"/></center>
       </div>
 
-      <div class="login-container">
-        <p style="margin-bottom:0px;">E-mail</p>
-        <input type="email" id="email" name="email" class="text-input"/><br />
-        <p style="margin-bottom:0px;">Password</p>
-        <input type="password" id="pass" name="pass" class="text-input"/>
-        <div>
-          <input type="submit" id="submit" name="login" value="Login" class="button" />
-        </div>
+        <div class="login-container">
+          <form method="POST" action="login">
+          <p style="margin-bottom:0px;">E-mail</p>
+          <input type="email" id="email" name="email" class="text-input"/><br />
+          <p style="margin-bottom:0px;">Password</p>
+          <input type="password" id="pass" name="pass" class="text-input"/>
+          <div>
+            <input type="submit" id="submit" name="login" value="Login" class="button" />
+          </div>
+        </form>
 
         <div style="font-size:14px;">
           <a href="./register.html">Register</a>
