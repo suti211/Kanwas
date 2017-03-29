@@ -5,13 +5,34 @@
     <title>Login - Kanwas</title>
   </head>
 
+  <style>
+  a:link {
+    color:#fff;
+    text-decoration: none;
+  }
+  </style>
+
   <body>
+    <div class="menu-container">
+        <div class="menu-item">Homepage</div>
+        <div class="menu-item">Grades</div>
+        <div class="menu-item">Assignments</div>
+        <div class="menu-item">About</div>
+    </div>
+
     <div class="main-window">
       <div class="login-container">
         <p style="margin-bottom:0px;">E-mail</p>
         <input type="email" id="email" name="email" class="text-input"/><br />
         <p style="margin-bottom:0px;">Password</p>
         <input type="password" id="pass" name="pass" class="text-input"/>
+        <div>
+          <input type="submit" id="submit" name="login" value="Login" class="button" />
+        </div>
+
+        <div style="font-size:14px;">
+          <a href="#">Register</a>
+        </div>
       </div>
     </div>
   </body>

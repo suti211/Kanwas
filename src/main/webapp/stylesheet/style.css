@@ -10,20 +10,24 @@ body {
 .text-input {
     margin:10px auto;
     width:80%;
-    padding: 5px 12px 10px 5px;
+    padding: 5px 10px 10px 5px;
     text-align: center;
-    font: 13px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font: 20px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-weight: 600;
 }
 
 .main-window {
   width:400px;
   height:300px;
   margin:auto;
+  color:#fff;
   display:table;
   vertical-align: middle;
-  border:1px solid #fff;
-  color:#fff;
+  border:1px solid rgba(255,255,255,0.5);
   background-color:rgba(0,0,0,0.5);
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+  text-shadow: 0px 0px 5px #000;
 }
 
 .login-container {
@@ -31,4 +35,43 @@ body {
   vertical-align: middle;
   text-align: center;
   display: table-cell;
+  margin-bottom:100px;
+  background-image:
+}
+
+.menu-container {
+  width:100%;
+  padding-top:10px;
+  border: solid 1px rgba(255,255,255,0.5);
+  height:40px;
+  display: inline-table;
+  background-color:rgba(0,0,0,0.5);
+  margin-bottom: 100px;
+  text-align: center;
+}
+
+.menu-item {
+  display: inline;
+  float: none;
+  margin: 5px 10px 5px 10px;
+  color:#fff;
+  text-transform: uppercase;
+  text-shadow: 0px 0px 5px #000;
+  font-size: 20px;
+}
+
+.button{
+  padding:10px 20px 10px 20px;
+  margin:10px auto;
+  width: 50%;
+  color: #fff;
+  font-weight: 600;
+  background-color: rgba(60, 120, 224, 0.5);
+  border: 1px solid #fff;
+  text-transform: uppercase;
+}
+.button:hover {
+  color: #fff;
+  border: 1px solid #fff;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
 }
