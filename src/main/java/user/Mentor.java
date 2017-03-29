@@ -2,8 +2,15 @@ package user;
 
 public class Mentor extends User{
 
-	public Mentor(String firstName, String lastName, String emailAddress, String userName, String password) {
-		super(firstName, lastName, emailAddress, userName, password);
+	
+	
+	public Mentor(String name, String emailAddress) {
+		super(name, emailAddress);
+		// TODO Auto-generated constructor stub
 	}
 
+	public Mentor(String name, String emailAddress, String userName, String password) {
+		super(name, emailAddress, userName, password);
+		// TODO Auto-generated constructor stub
+	}
 }
