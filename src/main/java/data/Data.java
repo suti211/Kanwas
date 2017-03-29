@@ -8,6 +8,7 @@ import user.User;
 
 public class Data {
 	private ArrayList<User> users = new ArrayList<User>();
+	private User currentUser;
 	
 	private static Data singleton = new Data( );	
 	private Data() { }
@@ -20,7 +21,14 @@ public class Data {
 		return users;
 	}
 	
-	
+	public User getCurrentUser() {
+		return currentUser;
+	}
+
+	public void setCurrentUser(User currentUser) {
+		this.currentUser = currentUser;
+	}
+
 	public void addUser(String userType, String name, String emailAddress){
 		switch(userType){
 		case "student":
