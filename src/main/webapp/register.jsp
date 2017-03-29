@@ -28,7 +28,7 @@
       </div>
 
       <div class="login-container">
-        <form action="POST">
+        <form method="POST" action="register">
           <table style="color: #fff; width:100%;">
             <tr>
               <td><p style="margin-bottom:0px;">First name</p></td>
