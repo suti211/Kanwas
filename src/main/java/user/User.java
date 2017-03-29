@@ -1,5 +1,12 @@
 package user;
 
+import java.io.IOException;
+
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
+
+import org.xml.sax.SAXException;
+
 import io.PersistentStorage;
 
 public abstract class User {
@@ -64,8 +71,12 @@ public abstract class User {
 	public void setFirstName(String name) {
 		this.firstName = name;
 
-		PersistentStorage ps = new PersistentStorage("src/main/java/io/user-db.xml");
-		ps.modifyUser(this);
+		PersistentStorage ps = PersistentStorage.newInstance("src/main/java/io/user-db.xml");
+		try {
+			ps.modifyUser(this);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void setLastName(String name) {

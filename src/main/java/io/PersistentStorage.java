@@ -87,7 +87,7 @@ public class PersistentStorage {
 		Element root = doc.getDocumentElement();
 
 		Element newUser = doc.createElement("user");
-		newUser.setAttribute("name", user.getName());
+		newUser.setAttribute("name", user.getFullName());
 		newUser.setAttribute("email", user.getEmailAddress());
 		newUser.setAttribute("role", user.getRole());
 		newUser.setAttribute("password", user.getPassword());
@@ -128,7 +128,7 @@ public class PersistentStorage {
 			}
 		}
 		
-		result.setAttribute("name", u.getName());
+		result.setAttribute("name", u.getFullName());
 		result.setAttribute("role", u.getRole());
 		result.setAttribute("password", u.getPassword());
 		
