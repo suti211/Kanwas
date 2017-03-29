@@ -47,6 +47,12 @@ public abstract class User {
 	public String getEmailAddress() {
 		return emailAddress;
 	}
+
+	@Override
+	public String toString() {
+		return "User [name=" + name + ", emailAddress=" + emailAddress + ", password=" + password + ", role=" + role
+				+ "]";
+	}
 	
 	
 }
