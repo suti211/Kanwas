@@ -8,40 +8,75 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * Created by tamasferenc on 2017.03.29..
  */
 public class RegisterServlet extends HttpServlet {
 
-    String firstname;
-    String lastname;
-    String email;
-    String password;
-    String role;
-    String name;
-
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	String firstName = "";
+    String lastName = "";
+    String email = "";
+    String role = "";
+    String name = "";
+    String pass = "";
+    String pass2 = "";
+    
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        firstname = request.getParameter("first-name");
-        lastname = request.getParameter("last-name");
-        name = firstname + lastname;
-        email = request.getParameter("e_mail");
+        firstName = request.getParameter("first-name");
+        lastName = request.getParameter("last-name");
+        //name = firstName + " " + lastName;
+        email = request.getParameter("email");
+        pass = request.getParameter("pass");
+        pass2 = request.getParameter("pass2");
+        role = request.getParameter("role");
+        
         
         //TODO: Remove dis
         System.out.println(request.getParameter("pass"));
         
-        if(request.getParameter("pass").equals(request.getParameter("pass2")))
-        {     	
-            password=request.getParameter("pass");
+        //Password does not match
+        if(pass.equals(pass2))
+        {     
+            //Convert password
+    		try {
+    	        byte[] bytesOfPassword = pass.getBytes("UTF-8");
+    	        MessageDigest md;
+    			
+    			md = MessageDigest.getInstance("MD5");
+    			byte[] md5Password = md.digest(bytesOfPassword);
+    			pass = md5Password.toString();
+    			pass2 = "";
+    			
+    			System.out.println(pass);
+    		} catch (Exception e) {
+    			e.printStackTrace();
+    		}
+        	
+            System.out.println("Success! :)");
         }
         else
         {
-            notValidPassword(request, response);
+        	request.setAttribute("message", "<div class=\"error\"> ERROR: Password does not match. </div>");
         }
-        role = request.getParameter("rule");
+        
+        //Empty fields
+        if (firstName.equals("") || lastName.equals("") || email.equals("") || role.equals(""))
+        {
+        	request.setAttribute("message", "<div class=\"error\"> ERROR: Requested field is empty.  </div>");
+        }
+       
 
         Data data = Data.newInstance();
-        //data.addUser(role, name, email,"", password);
+        //data.addUser(role, name, email,"", pass);
+        
+        request.getRequestDispatcher("/register.jsp").forward(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -49,10 +84,5 @@ public class RegisterServlet extends HttpServlet {
     	System.out.println("!! GET !!");
     	request.setAttribute("message", "SAJT");
     	
-    }
-    protected void notValidPassword(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
-    {
-        request.setAttribute("message", "<div class=\"error\"> ERROR: Apadfasza adj jelszót </div>");
-        request.getRequestDispatcher("/register.jsp").forward(request, response);
-    }
+    }  
 }

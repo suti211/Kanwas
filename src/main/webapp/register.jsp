@@ -36,8 +36,8 @@
             </tr>
 
             <tr>
-              <td><input style="width:100%;" type="email" id="email" name="first-name" class="text-input"/></td>
-              <td><input style="width:100%;"  type="email" id="email" name="last-name" class="text-input"/></td>
+              <td><input style="width:100%;" type="text" id="first-name" name="first-name" class="text-input"/></td>
+              <td><input style="width:100%;"  type="text" id="last-name" name="last-name" class="text-input"/></td>
             </tr>
           </table>
 
@@ -52,8 +52,8 @@
 
           <table style="color: #fff; width:100%; margin-bottom:30px; margin-top:10px;">
             <tr>
-              <td><input type="radio" name="rule" value="student"> Student</td>
-              <td><input type="radio" name="rule" value="mentor"> Mentor</td>
+              <td><input type="radio" name="role" checked value="student"> Student</td>
+              <td><input type="radio" name="role" value="mentor"> Mentor</td>
             </tr>
           </table>
 
