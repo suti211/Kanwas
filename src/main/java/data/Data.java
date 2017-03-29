@@ -24,21 +24,21 @@ public class Data {
 	public void addUser(String userType, String name, String emailAddress){
 		switch(userType){
 		case "student":
-			users.add(new Student(name, emailAddress));
+			users.add(new Student(name, emailAddress, userType));
 			break;
 		case "mentor":
-			users.add(new Mentor(name, emailAddress));
+			users.add(new Mentor(name, emailAddress, userType));
 			break;
 		}
 	}
 	
-	public void addUser(String userType, String name, String emailAddress, String userName, String password){
+	public void addUser(String userType, String name, String emailAddress, String password){
 		switch(userType){
 		case "student":
-			users.add(new Student(name, emailAddress, userName, password));
+			users.add(new Student(name, emailAddress, userType, password));
 			break;
 		case "mentor":
-			users.add(new Mentor(name, emailAddress, userName, password));
+			users.add(new Mentor(name, emailAddress, userType, password));
 			break;
 		}
 	}
