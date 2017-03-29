@@ -32,8 +32,12 @@ public abstract class User {
 		else
 			role = "student";
 		
-		PersistentStorage ps = new PersistentStorage("src/main/java/io/user-db.xml");
-		ps.modifyUser(this);		
+		PersistentStorage ps = PersistentStorage.newInstance("src/main/java/io/user-db.xml");
+		try {
+			ps.modifyUser(this);				
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public String getPassword() {
@@ -67,8 +71,12 @@ public abstract class User {
 	public void setLastName(String name) {
 		this.lastName = name;
 
-		PersistentStorage ps = new PersistentStorage("src/main/java/io/user-db.xml");
-		ps.modifyUser(this);
+		PersistentStorage ps = PersistentStorage.newInstance("src/main/java/io/user-db.xml");
+		try {
+			ps.modifyUser(this);			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public String getEmailAddress() {
