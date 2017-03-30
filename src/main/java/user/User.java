@@ -22,6 +22,8 @@ public abstract class User {
 		this.lastName = lastName;
 		this.emailAddress = emailAddress;
 		this.role = role;
+		
+		saveToLocalDB(this);
 	}
 	
 	public User(String firstName, String lastName, String emailAddress, String role, String password) {
@@ -31,6 +33,8 @@ public abstract class User {
 		this.emailAddress = emailAddress;
 		this.role = role;
 		this.password = password;
+		
+		saveToLocalDB(this);
 	}
 	
 	public void changeRole(){
@@ -39,12 +43,7 @@ public abstract class User {
 		else
 			role = "student";
 		
-		PersistentStorage ps = PersistentStorage.newInstance("src/main/java/io/user-db.xml");
-		try {
-			ps.modifyUser(this);				
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		saveToLocalDB(this);
 	}
 	
 	public String getPassword() {
@@ -71,23 +70,13 @@ public abstract class User {
 	public void setFirstName(String name) {
 		this.firstName = name;
 
-		PersistentStorage ps = PersistentStorage.newInstance("src/main/java/io/user-db.xml");
-		try {
-			ps.modifyUser(this);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		saveToLocalDB(this);
 	}
 	
 	public void setLastName(String name) {
 		this.lastName = name;
 
-		PersistentStorage ps = PersistentStorage.newInstance("src/main/java/io/user-db.xml");
-		try {
-			ps.modifyUser(this);			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		saveToLocalDB(this);
 	}
 
 	public String getEmailAddress() {
@@ -98,6 +87,15 @@ public abstract class User {
 	public String toString() {
 		return "User [name=" + getFullName() + ", emailAddress=" + emailAddress + ", password=" + password + ", role=" + role
 				+ "]";
+	}
+	
+	private void saveToLocalDB(User user){
+		PersistentStorage ps = PersistentStorage.newInstance("src/main/java/io/user-db.xml");
+		try {
+			ps.modifyUser(user);			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	
