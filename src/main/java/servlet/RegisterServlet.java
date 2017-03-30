@@ -72,17 +72,37 @@ public class RegisterServlet extends HttpServlet {
 
         Data data = Data.newInstance();
         
-        for (User u: data.getUserList())
-        {
-        	System.out.println("u:" + u);
-        	
-            if(u.getEmailAddress().equals(email))
-            {
-                request.setAttribute("message", "<div class=\"error\"> ERROR: E-mail address already registered  </div>");
-            }else {
-            	data.addUser(firstName, lastName, email, role, pass);
-            }
+        System.out.println("email: " + email);
+        
+//        for (User u: data.getUserList())
+//        {
+//        	System.out.println("u: " + u);  	
+//        	
+//            if(u.getEmailAddress().equals(email))
+//            {
+//                request.setAttribute("message", "<div class=\"error\"> ERROR: E-mail address already registered  </div>");
+//            }else {
+//            	data.addUser(firstName, lastName, email, role, pass);
+//            }
+//        }
+        
+        boolean alreadyExist = false;
+        System.out.println(data.getUserList().size());
+
+        for(User u: data.getUserList()){
+        	System.out.println("u: " + u.toString());  
+        	if(u.getEmailAddress().equals(email)){
+        		alreadyExist = true;
+        	}
         }
+        
+        if(!alreadyExist){
+        	System.out.println("u: " +"szar"); 
+        	data.addUser(role, firstName, lastName, email, pass);
+        } else {
+        	request.setAttribute("message", "<div class=\"error\"> ERROR: E-mail address already registered  </div>");
+        }
+        System.out.println(data.getUserList().size());
         
         request.getRequestDispatcher("/register.jsp").forward(request, response);
     }
