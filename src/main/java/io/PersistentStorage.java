@@ -1,6 +1,7 @@
 package io;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +43,11 @@ public class PersistentStorage {
 	public static PersistentStorage newInstance() {
 		if (storage == null) {
 			storage = new PersistentStorage();
+			
 			xmlFile = new File(filePath);
+			
+			//file creation here
+			fileCheck(xmlFile);
 		}
 		return storage;
 	}
@@ -142,6 +147,21 @@ public class PersistentStorage {
 		StreamResult res = new StreamResult(xmlFile);
 		t.transform(source, res);
 		
+	}
+	
+	private static void fileCheck(File file){
+		if(!file.exists()){
+			try{
+				file.createNewFile();
+				
+				FileWriter fw = new FileWriter(file);
+				fw.write("<users>\n<users>");
+				fw.close();
+				
+			} catch (Exception e){
+				e.printStackTrace();
+			}
+		}
 	}
 
 }
