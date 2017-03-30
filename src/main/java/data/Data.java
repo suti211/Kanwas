@@ -29,31 +29,31 @@ public class Data {
 		this.currentUser = currentUser;
 	}
 
-	public void addUser(String userType, String name, String emailAddress){
+	public void addUser(String userType, String firstName, String lastName, String emailAddress){
 		switch(userType){
 		case "student":
-			users.add(new Student(name, emailAddress, userType));
+			users.add(new Student(firstName, lastName, emailAddress, userType));
 			break;
 		case "mentor":
-			users.add(new Mentor(name, emailAddress, userType));
+			users.add(new Mentor(firstName, lastName, emailAddress, userType));
 			break;
 		}
 	}
 	
-	public void addUser(String userType, String name, String emailAddress, String password){
+	public void addUser(String userType, String firstName, String lastName, String emailAddress, String password){
 		switch(userType){
 		case "student":
-			users.add(new Student(name, emailAddress, userType, password));
+			users.add(new Student(firstName, lastName, emailAddress, userType, password));
 			break;
 		case "mentor":
-			users.add(new Mentor(name, emailAddress, userType, password));
+			users.add(new Mentor(firstName, lastName, emailAddress, userType, password));
 			break;
 		}
 	}
 	
 	public User getUserbyName(String name){
 		for (User user : users) {
-			if(user.getName().equals(name))
+			if(user.getFullName().equals(name))
 				return user;
 		}
 		return null;
