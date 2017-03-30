@@ -40,15 +40,7 @@
 				}
 			}
 			
-			.extra-menu-item {
-				padding-left:10px;
-				width:200px;
-				margin-right: -200px;
-			}
-			.extra-menu-item:hover{
-				text-decoration: underline;
-			}
-			
+
 			a:link {color:#fff;text-decoration: none;}
 			a:visited{color:#fff;}
 		</style>
@@ -74,11 +66,11 @@
 				<a href="./user"><div class="menu-item">Members</div></a>
 				<a href="./profile"><div class="menu-item">Profile</div></a>
 				<div class="menu-item">About</div>
-				<a href="./register.jsp"><div class="menu-item" style="border:1px solid #000; padding: 0px 5px 0px 5px">Sign Up</div></a>
+				<a href="./register"><div class="menu-item" style="border:1px solid #000; padding: 0px 5px 0px 5px">Sign Up</div></a>
 			</div>
 			
 			<!--Click here to log in.-->
-			<a href="${extra-url}"><span class="extra-menu-item">${extra-menu}</span></a>
+			<a href="${extraurl}"><span class="extra-menu-item">${extramenu}</span></a>
 		</div>
 
 		<div class="homepage-container">

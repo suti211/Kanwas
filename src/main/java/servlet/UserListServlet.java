@@ -24,10 +24,11 @@ public class UserListServlet extends HttpServlet {
 		User currentUser = d.getCurrentUser(d.getCookie(request));
 		if (currentUser == null)
 		{
-			response.sendRedirect("./login.jsp");
-			return;
+			request.setAttribute("extramenu", "Click here to log in.");
+			request.setAttribute("extraurl", "./login");
 		}else{
-			
+			request.setAttribute("extramenu", currentUser.getFirstName());
+			request.setAttribute("extraurl", "./profile");
 		}
 		
 		Data data = Data.newInstance();

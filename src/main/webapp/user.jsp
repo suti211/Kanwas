@@ -3,7 +3,6 @@
 		<link rel="stylesheet" type="text/css" href="./stylesheet/style.css">
 		<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-		<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 		<title>${fullname} - Kanwas</title>
 	</head>
 
@@ -24,10 +23,10 @@
 				<a href="./user"><div class="menu-item">Members</div></a>
 				<a href="./profile"><div class="menu-item">Profile</div></a>
 				<div class="menu-item">About</div>
-				<a href="./register.jsp"><div class="menu-item" style="border:1px solid #000; padding: 0px 5px 0px 5px">Sign Up</div></a>
+				<a href="./register"><div class="menu-item" style="border:1px solid #000; padding: 0px 5px 0px 5px">Sign Up</div></a>
 			</div>
 			
-			<a href="${extra-url}"><span class="extra-menu-item">${extra-menu}</span></a>
+			<a href="${extraurl}"><span class="extra-menu-item">${extramenu}</span></a>
 		</div>
 
 		<div class="login-title">

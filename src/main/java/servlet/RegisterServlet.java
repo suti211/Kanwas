@@ -41,6 +41,18 @@ public class RegisterServlet extends HttpServlet {
         pass2 = request.getParameter("pass2");
         role = request.getParameter("role");
         
+        Data data = Data.newInstance();
+        User currentUser = data.getCurrentUser(data.getCookie(request));
+		if (currentUser == null)
+		{
+			request.setAttribute("extramenu", "Click here to log in.");
+			request.setAttribute("extraurl", "./login");
+		}else{
+			request.setAttribute("extramenu", currentUser.getFirstName());
+			request.setAttribute("extraurl", "./profile");
+		}
+        
+        
         //Password does not match
         if(pass.equals(pass2))
         {     
@@ -59,10 +71,7 @@ public class RegisterServlet extends HttpServlet {
         if (firstName.equals("") || lastName.equals("") || email.equals("") || role.equals(""))
         {
         	request.setAttribute("message", "<div class=\"error\"> ERROR: Requested field is empty.  </div>");
-        }
-       
-
-        Data data = Data.newInstance();
+        }     
         
         System.out.println("email: " + email);
         
@@ -84,6 +93,7 @@ public class RegisterServlet extends HttpServlet {
         }
         
         request.getRequestDispatcher("/register.jsp").forward(request, response);
+        //doGet(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -92,12 +102,13 @@ public class RegisterServlet extends HttpServlet {
 		User currentUser = d.getCurrentUser(d.getCookie(request));
 		if (currentUser == null)
 		{
-			request.setAttribute("extra-menu", "Click here to log in.");
-			request.setAttribute("extra-url", "./login");
+			request.setAttribute("extramenu", "Click here to log in.");
+			request.setAttribute("extraurl", "./login");
 		}else{
-			request.setAttribute("extra-menu", currentUser.getFirstName());
-			request.setAttribute("extra-url", "./profile");
+			request.setAttribute("extramenu", currentUser.getFirstName());
+			request.setAttribute("extraurl", "./profile");
 		}
+		request.getRequestDispatcher("/register.jsp").forward(request, response);
     	
     }
     

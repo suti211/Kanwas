@@ -33,11 +33,11 @@ public class IndexServlet extends HttpServlet {
 		User currentUser = d.getCurrentUser(d.getCookie(request));
 		if (currentUser == null)
 		{
-			request.setAttribute("extra-menu", "Click here to log in.");
-			request.setAttribute("extra-url", "./login");
+			request.setAttribute("extramenu", "Click here to log in.");
+			request.setAttribute("extraurl", "./login");
 		}else{
-			request.setAttribute("extra-menu", currentUser.getFirstName());
-			request.setAttribute("extra-url", "./profile");
+			request.setAttribute("extramenu", currentUser.getFirstName());
+			request.setAttribute("extraurl", "./profile");
 		}
 		request.getRequestDispatcher("/index.jsp").forward(request, response);
 	}

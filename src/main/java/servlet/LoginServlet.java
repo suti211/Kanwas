@@ -24,7 +24,16 @@ public class LoginServlet extends HttpServlet
         email = request.getParameter("email");
         pass = request.getParameter("pass");
         Data users = Data.newInstance();
+		
+        //Redirect user if already logged in
+        User currentUser = users.getCurrentUser(users.getCookie(request));
+		if (currentUser != null)
+		{
+			response.sendRedirect("./profile");
+			return;
+		}
 
+		//Emmail compare
         if (email.equals("") || pass.equals(""))
         {
             request.setAttribute("message", "<div class=\"error\"> ERROR: Requested field is empty.  </div>");
@@ -76,11 +85,23 @@ public class LoginServlet extends HttpServlet
         	request.setAttribute("message", "<div class=\"error\"> ERROR: E-mail or password is incorrect. </div>");
         }
         
-        request.getRequestDispatcher("/login.jsp").forward(request, response);
+        doGet(request,response);
+        //request.getRequestDispatcher("/login.jsp").forward(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+    	Data d = Data.newInstance();
+		User currentUser = d.getCurrentUser(d.getCookie(request));
+		if (currentUser == null)
+		{
+			request.setAttribute("extramenu", "Click here to log in.");
+			request.setAttribute("extraurl", "./login");
+		}else{
+			request.setAttribute("extramenu", currentUser.getFirstName());
+			request.setAttribute("extraurl", "./profile");
+		}
+		request.getRequestDispatcher("/login.jsp").forward(request, response);
     }
 
 }

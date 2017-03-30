@@ -109,6 +109,18 @@ body {
 	text-shadow: 0px 0px 5px #000;
 }
 
+.extra-menu-item {
+    padding-left: 10px;
+    width: 200px;
+    margin-right: -100px;
+    position: fixed;
+    text-align: left;
+    margin-top: 10px;
+}
+.extra-menu-item:hover{
+	text-decoration: underline;
+}
+
 .text-input {
 	margin:10px auto;
 	padding: 5px 0px 5px 0px;
