@@ -88,8 +88,16 @@ public class RegisterServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    	System.out.println("!! GET !!");
-    	request.setAttribute("message", "SAJT");
+    	Data d = Data.newInstance();
+		User currentUser = d.getCurrentUser(d.getCookie(request));
+		if (currentUser == null)
+		{
+			request.setAttribute("extra-menu", "Click here to log in.");
+			request.setAttribute("extra-url", "./login");
+		}else{
+			request.setAttribute("extra-menu", currentUser.getFirstName());
+			request.setAttribute("extra-url", "./profile");
+		}
     	
     }
     

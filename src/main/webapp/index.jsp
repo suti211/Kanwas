@@ -40,10 +40,12 @@
 				}
 			}
 			
-			.extra-login-button {
+			.extra-menu-item {
 				padding-left:10px;
+				width:200px;
+				margin-right: -200px;
 			}
-			.extra-login-button:hover{
+			.extra-menu-item:hover{
 				text-decoration: underline;
 			}
 			
@@ -61,25 +63,22 @@
 							"Send nudes.",
 							"Now its a girl."];
 				document.getElementById("about").innerHTML = "Kanwas. " + texts[Math.floor(Math.random()*texts.length)];
-				
-				// Evan
-				var w = document.getElementById('also-login').offsetWidth;
-				document.getElementById("also-login").style.marginRight -= w;  
 			}
 			window.onload = randomText;
 		</script>
 	
 		<div class="menu-container">
-			<a href="./index.html"><img src="./images/logo.png" width="125" style="margin-bottom:-8px;margin-left:-125px"/></a>
+			<a href="./index"><img src="./images/logo.png" width="125" style="margin-bottom:-8px;margin-left:-125px"/></a>
 			
 			<div class="inner-menu-container">
-				<div class="menu-item">Courses</div>
-				<div class="menu-item">Modules</div>
+				<a href="./user"><div class="menu-item">Members</div></a>
+				<a href="./profile"><div class="menu-item">Profile</div></a>
 				<div class="menu-item">About</div>
 				<a href="./register.jsp"><div class="menu-item" style="border:1px solid #000; padding: 0px 5px 0px 5px">Sign Up</div></a>
 			</div>
 			
-			<a href="./login.jsp"><span id="also-login" class="extra-login-button">Click here to log in.</span></a>
+			<!--Click here to log in.-->
+			<a href="${extra-url}"><span class="extra-menu-item">${extra-menu}</span></a>
 		</div>
 
 		<div class="homepage-container">

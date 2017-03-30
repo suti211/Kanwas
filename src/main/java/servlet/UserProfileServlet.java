@@ -24,15 +24,9 @@ public class UserProfileServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		/**Data data = Data.newInstance();
-		User currentUser = data.getCurrentUser();
-		
-		request.setAttribute("name", currentUser.getFullName());
-		request.setAttribute("email", currentUser.getEmailAddress());
-		request.setAttribute("role", currentUser.getRole());*/
 		
 		Data d = Data.newInstance();
-		User currentUser = d.getCurrentUser(getCookie(request));
+		User currentUser = d.getCurrentUser(d.getCookie(request));
 		if (currentUser == null)
 		{
 			response.sendRedirect("./login.jsp");
@@ -72,23 +66,4 @@ public class UserProfileServlet extends HttpServlet {
 		
 	}
 	
-	//TODO: Implement
-	private String getCookie(HttpServletRequest request)
-	{	
-		Cookie[] cookies = request.getCookies();
-		if(cookies != null)
-		{
-			for (int i = 0; i < cookies.length; i++)
-			{
-				Cookie cookie = cookies[i];
-				if (cookie.getName().equals("sessionID"))
-				{	
-					return cookie.getValue(); 
-				}        	
-			}
-			return "";
-		}
-		return "";
-	}
-
 }

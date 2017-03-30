@@ -21,11 +21,13 @@ public class UserListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		Data d = Data.newInstance();
-		User currentUser = d.getCurrentUser(getCookie(request));
+		User currentUser = d.getCurrentUser(d.getCookie(request));
 		if (currentUser == null)
 		{
 			response.sendRedirect("./login.jsp");
 			return;
+		}else{
+			
 		}
 		
 		Data data = Data.newInstance();
@@ -72,24 +74,5 @@ public class UserListServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
-	
-	//TODO: Implement
-		private String getCookie(HttpServletRequest request)
-		{	
-			Cookie[] cookies = request.getCookies();
-			if(cookies != null)
-			{
-				for (int i = 0; i < cookies.length; i++)
-				{
-					Cookie cookie = cookies[i];
-					if (cookie.getName().equals("sessionID"))
-					{	
-						return cookie.getValue(); 
-					}        	
-				}
-				return "";
-			}
-			return "";
-		}
 
 }

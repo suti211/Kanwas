@@ -101,4 +101,23 @@ public class Data {
 	public Map<User, String> getSessions() {
 		return sessions;
 	}
+	
+	//TODO: Implement
+	public String getCookie(HttpServletRequest request)
+	{	
+		Cookie[] cookies = request.getCookies();
+		if(cookies != null)
+		{
+			for (int i = 0; i < cookies.length; i++)
+			{
+				Cookie cookie = cookies[i];
+				if (cookie.getName().equals("sessionID"))
+				{	
+					return cookie.getValue(); 
+				}        	
+			}
+			return "";
+		}
+		return "";
+	}
 }

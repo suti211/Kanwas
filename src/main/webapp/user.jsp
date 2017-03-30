@@ -18,14 +18,16 @@
 	<body>
 		
 		<div class="menu-container">
-			<a href="./index.html"><img src="./images/logo.png" width="125" style="margin-bottom:-8px;margin-left:-125px"/></a>
+			<a href="./index"><img src="./images/logo.png" width="125" style="margin-bottom:-8px;margin-left:-125px"/></a>
 
 			<div class="inner-menu-container">
-				<div class="menu-item">Courses</div>
-				<div class="menu-item">Modules</div>
+				<a href="./user"><div class="menu-item">Members</div></a>
+				<a href="./profile"><div class="menu-item">Profile</div></a>
 				<div class="menu-item">About</div>
 				<a href="./register.jsp"><div class="menu-item" style="border:1px solid #000; padding: 0px 5px 0px 5px">Sign Up</div></a>
 			</div>
+			
+			<a href="${extra-url}"><span class="extra-menu-item">${extra-menu}</span></a>
 		</div>
 
 		<div class="login-title">
