@@ -20,13 +20,13 @@ import static data.Encrypt.encrypt;
 public class LoginServlet extends HttpServlet
 {
     String email;
-    String password;
+    String pass;
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         email = request.getParameter("email");
-        password = request.getParameter("pass");
+        pass = request.getParameter("pass");
         Data users = Data.newInstance();
 
-        if (email.equals("") || password.equals(""))
+        if (email.equals("") || pass.equals(""))
         {
             request.setAttribute("message", "<div class=\"error\"> ERROR: Requested field is empty.  </div>");
         }
@@ -35,7 +35,6 @@ public class LoginServlet extends HttpServlet
         {
             if(user.getEmailAddress().equals(email))
             {
-            	String pass = "";
             	
             	try {
         	        pass = encrypt(pass);
