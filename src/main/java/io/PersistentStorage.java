@@ -27,7 +27,7 @@ import user.User;
 public class PersistentStorage {
 
 	private static File xmlFile;
-	private String filePath;
+	static private String filePath = "./user-db.xml";
 	static PersistentStorage storage;
 
 	private static final int EMAIL = 0;
@@ -39,10 +39,10 @@ public class PersistentStorage {
 
 	}
 
-	public static PersistentStorage newInstance(String filepath) {
+	public static PersistentStorage newInstance() {
 		if (storage == null) {
 			storage = new PersistentStorage();
-			xmlFile = new File(filepath);
+			xmlFile = new File(filePath);
 		}
 		return storage;
 	}

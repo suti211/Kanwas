@@ -22,13 +22,19 @@ public class LoginServlet extends HttpServlet
         email = request.getParameter("email");
         password = request.getParameter("pass");
         Data users = Data.newInstance();
+
+        if (email.equals("") || password.equals(""))
+        {
+            request.setAttribute("message", "<div class=\"error\"> ERROR: Requested field is empty.  </div>");
+        }
+
         for (User user: users.getUserList())
         {
             if(user.getEmailAddress().equals(email))
             {
                 if(user.getPassword().equals(password))
                 {
-                    
+                    users.setCurrentUser(user);
                 }
                 else
                 {
