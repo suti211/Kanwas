@@ -23,7 +23,7 @@ public abstract class User {
 		this.emailAddress = emailAddress;
 		this.role = role;
 		
-		saveToLocalDB(this);
+		addToLocalDB(this);
 	}
 	
 	public User(String firstName, String lastName, String emailAddress, String role, String password) {
@@ -34,7 +34,7 @@ public abstract class User {
 		this.role = role;
 		this.password = password;
 		
-		saveToLocalDB(this);
+		addToLocalDB(this);
 	}
 	
 	public void changeRole(){
@@ -43,7 +43,7 @@ public abstract class User {
 		else
 			role = "student";
 		
-		saveToLocalDB(this);
+		modifyToLocalDB(this);
 	}
 	
 	public String getPassword() {
@@ -70,13 +70,13 @@ public abstract class User {
 	public void setFirstName(String name) {
 		this.firstName = name;
 
-		saveToLocalDB(this);
+		modifyToLocalDB(this);
 	}
 	
 	public void setLastName(String name) {
 		this.lastName = name;
 
-		saveToLocalDB(this);
+		modifyToLocalDB(this);
 	}
 
 	public String getEmailAddress() {
@@ -89,7 +89,16 @@ public abstract class User {
 				+ "]";
 	}
 	
-	private void saveToLocalDB(User user){
+	private void addToLocalDB(User user){
+		PersistentStorage ps = PersistentStorage.newInstance();
+		try {
+			ps.addUser(user);			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void modifyToLocalDB(User user){
 		PersistentStorage ps = PersistentStorage.newInstance();
 		try {
 			ps.modifyUser(user);			
