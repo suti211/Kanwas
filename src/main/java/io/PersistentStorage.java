@@ -27,7 +27,7 @@ import user.User;
 public class PersistentStorage {
 
 	private static File xmlFile;
-	static private String filePath = "./user-db.xml";
+	static private String filePath = "webapps/Kanwas/WEB-INF/classes/io/user-db.xml";
 	static PersistentStorage storage;
 
 	private static final int EMAIL = 0;
