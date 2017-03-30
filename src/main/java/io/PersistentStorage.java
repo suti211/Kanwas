@@ -32,9 +32,10 @@ public class PersistentStorage {
 	static PersistentStorage storage;
 
 	private static final int EMAIL = 0;
-	private static final int NAME = 1;
-	private static final int ROLE = 3;
-	private static final int PASSWORD = 2;
+	private static final int FIRSTNAME = 1;
+	private static final int LASTNAME = 2;
+	private static final int ROLE = 4;
+	private static final int PASSWORD = 3;
 
 	public PersistentStorage() {
 
@@ -65,17 +66,18 @@ public class PersistentStorage {
 		for (int i = 0; i < nodes.getLength(); i++) {
 			User u = null;
 
-			String name = nodes.item(i).getAttributes().item(NAME).getTextContent();
+			String firstName = nodes.item(i).getAttributes().item(FIRSTNAME).getTextContent();
+			String lastName = nodes.item(i).getAttributes().item(LASTNAME).getTextContent();
 			String email = nodes.item(i).getAttributes().item(EMAIL).getTextContent();
 			String role = nodes.item(i).getAttributes().item(ROLE).getTextContent();
 			String password = nodes.item(i).getAttributes().item(PASSWORD).getTextContent();
 
 			if (role.equals("student")) {
-				u = new Student(name, email, role, password);
+				u = new Student(firstName, lastName, email, role, password);
 			} else if (role.equals("mentor")) {
-				u = new Mentor(name, email, role, password);
+				u = new Mentor(firstName, lastName, email, role, password);
 			}
-			// System.out.println(u);
+			System.out.println(u);
 			users.add(u);
 		}
 
@@ -92,7 +94,8 @@ public class PersistentStorage {
 		Element root = doc.getDocumentElement();
 
 		Element newUser = doc.createElement("user");
-		newUser.setAttribute("name", user.getFullName());
+		newUser.setAttribute("first-name", user.getFirstName());
+		newUser.setAttribute("last-name", user.getLastName());
 		newUser.setAttribute("email", user.getEmailAddress());
 		newUser.setAttribute("role", user.getRole());
 		newUser.setAttribute("password", user.getPassword());
@@ -133,7 +136,9 @@ public class PersistentStorage {
 			}
 		}
 		
-		result.setAttribute("name", u.getFullName());
+		
+		result.setAttribute("first-name", u.getFirstName());
+		result.setAttribute("last-name", u.getLastName());
 		result.setAttribute("role", u.getRole());
 		result.setAttribute("password", u.getPassword());
 		
