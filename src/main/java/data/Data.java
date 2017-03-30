@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+
 import user.Mentor;
 import user.Student;
 import user.User;
@@ -26,8 +29,15 @@ public class Data {
 		return users;
 	}
 	
-	public User getCurrentUser() {
-		return currentUser;
+	public User getCurrentUser(String sessionID) {
+		for (Map.Entry<User, String> sess : sessions.entrySet())
+		{
+			if (sessionID.equals(sess.getValue()))
+			{
+				return sess.getKey();
+			}
+		}
+		return null;
 	}
 
 	public void setCurrentUser(User currentUser) {

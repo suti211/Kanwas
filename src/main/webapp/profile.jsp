@@ -12,7 +12,6 @@
 		a:visited{color:#fff;}
 		td {text-align: center;}
 		table {padding:10px;width:100%;}
-		.head {border-bottom: 1px solid #fff;}
 	</style>
 
 	<body>
@@ -33,12 +32,9 @@
 		</div>
 		
 		<div class="main-window">
-			<div id="hideable" style="margin:auto;padding-top:20px;text-align: center;">
-				<form method="GET" action="user">
-					<input class="button" type="submit" value="Refresh" id="submit" onClick="hide();"/>
-				</form>
-	     	</div>
-	     ${tableContent}
+			<div style="margin:auto;padding-top:20px;text-align: center;">
+				${tableContent}
+	     	</div>     
 		</div>
 
 		<div style="text-align: center; color:#fff; margin-top:5px;">

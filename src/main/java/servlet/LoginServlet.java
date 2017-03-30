@@ -82,24 +82,5 @@ public class LoginServlet extends HttpServlet
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
-    
-    
-    //TODO: Implement
-	private String getCookie(HttpServletRequest request)
-	{	
-		Cookie[] cookies = request.getCookies();
-		if(cookies != null)
-		{
-			for (int i = 0; i < cookies.length; i++)
-			{
-				Cookie cookie = cookies[i];
-				if (cookie.getName().equals("sessionID"))
-				{	
-					return cookie.getValue(); 
-				}        	
-			}
-			return "";
-		}
-		return "";
-	}
+
 }
