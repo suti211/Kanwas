@@ -34,11 +34,12 @@ public class LoginServlet extends HttpServlet
             {
                 if(user.getPassword().equals(password))
                 {
-                    users.setCurrentUser(user);
+                    //users.setCurrentUser(user);
+                    request.setAttribute("message", "<div class=\"success\"> SUCCESS: You logged in, nigga.  </div>");
                 }
                 else
                 {
-                    request.setAttribute("message", "<div class=\"error\"> ERROR: Incorrect password. </div>");
+                    request.setAttribute("message", "<div class=\"error\"> ERROR: E-mail or password is incorrect. </div>");
                 }
             }
         }
