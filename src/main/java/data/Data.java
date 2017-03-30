@@ -11,7 +11,7 @@ import user.User;
 
 public class Data {
 
-	private Map<User, String> cookies = new HashMap<>();
+	private Map<User, String> sessions = new HashMap<>();
 	private ArrayList<User> users = new ArrayList<User>();
 	private User currentUser;
 	
@@ -73,7 +73,7 @@ public class Data {
 	}
 
 	public String stringGenerator() {
-		char[] chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".toCharArray();
+		char[] chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789?#!+§/=(){}".toCharArray();
 		String randString="";
 		Random random = new Random();
 		for (int i = 0; i < 20; i++) {
@@ -85,10 +85,10 @@ public class Data {
 
 	public void putToMap(User u, String s)
 	{
-		cookies.put(u,s);
+		sessions.put(u,s);
 	}
 
 	public Map<User, String> getCookies() {
-		return cookies;
+		return sessions;
 	}
 }

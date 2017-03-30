@@ -9,8 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+
+import static data.Encrypt.encrypt;
 
 /**
  * Created by tamasferenc on 2017.03.29..
@@ -42,21 +45,10 @@ public class RegisterServlet extends HttpServlet {
         if(pass.equals(pass2))
         {     
             //Convert password
-    		try {
-    	        byte[] bytesOfPassword = pass.getBytes("UTF-8");
-    	        MessageDigest md;
+			pass = encrypt(pass);
+			pass2 = "";
     			
-    			md = MessageDigest.getInstance("MD5");
-    			byte[] md5Password = md.digest(bytesOfPassword);
-    			pass = md5Password.toString();
-    			pass2 = "";
-    			
-    			System.out.println(pass);
-    		} catch (Exception e) {
-    			e.printStackTrace();
-    		}
-        	
-            System.out.println("Success! :)");
+            System.out.println("Password encrypted: " + pass);
         }
         else
         {
@@ -72,16 +64,23 @@ public class RegisterServlet extends HttpServlet {
 
         Data data = Data.newInstance();
         
-        for (User u: data.getUserList())
-        {
-        	System.out.println(u);
-        	
-            if(u.getEmailAddress().equals(email))
-            {
-                request.setAttribute("message", "<div class=\"error\"> ERROR: E-mail address already registered  </div>");
-            }else {
-            	data.addUser(firstName, lastName, email, role, pass);
-            }
+        System.out.println("email: " + email);
+        
+        
+        boolean alreadyExist = false;
+        System.out.println(data.getUserList().size());
+
+        for(User u: data.getUserList()){
+        	if(u.getEmailAddress().equals(email)){
+        		alreadyExist = true;
+        	}
+        }
+        
+        if(!alreadyExist){
+        	data.addUser(role, firstName, lastName, email, pass);
+        	request.setAttribute("message", "<div class=\"success\"> SUCCESS: You succesfully created an account.  </div>");
+        } else {
+        	request.setAttribute("message", "<div class=\"error\"> ERROR: E-mail address already registered  </div>");
         }
         
         request.getRequestDispatcher("/register.jsp").forward(request, response);
@@ -92,5 +91,7 @@ public class RegisterServlet extends HttpServlet {
     	System.out.println("!! GET !!");
     	request.setAttribute("message", "SAJT");
     	
-    }  
+    }
+    
+
 }

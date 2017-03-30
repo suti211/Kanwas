@@ -13,6 +13,11 @@
 	</style>
 
 	<body>
+	
+		<form method="GET" action="user">
+			<input type="submit" value="Sajt" id="submit" />
+		</form>
+		
 		<div class="menu-container">
 			<a href="./index.html"><img src="./images/logo.png" width="125" style="margin-bottom:-8px;margin-left:-125px"/></a>
 
