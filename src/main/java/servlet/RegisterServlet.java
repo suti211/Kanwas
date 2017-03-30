@@ -74,7 +74,7 @@ public class RegisterServlet extends HttpServlet {
         
         for (User u: data.getUserList())
         {
-        	System.out.println(u);
+        	System.out.println("u:" + u);
         	
             if(u.getEmailAddress().equals(email))
             {
