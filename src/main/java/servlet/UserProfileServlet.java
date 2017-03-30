@@ -29,12 +29,22 @@ public class UserProfileServlet extends HttpServlet {
 		User currentUser = d.getCurrentUser(d.getCookie(request));
 		if (currentUser == null)
 		{
-			request.setAttribute("extramenu", "Click here to log in.");
-			request.setAttribute("extraurl", "./login");
+			response.sendRedirect("./login");
+			return;
 		}else{
 			request.setAttribute("extramenu", currentUser.getFirstName());
 			request.setAttribute("extraurl", "./profile");
 		}
+		
+		try {
+			if(request.getParameter("first").equals("yes")){
+				request.setAttribute("message", "<div id=\"hideable\" class=\"success\"> SUCCESS: You successfully logged in. </div>");
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		
 		
 		
 		String tableContent = "<table>" + 
@@ -61,12 +71,12 @@ public class UserProfileServlet extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-		
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 	}
-	
+
 }

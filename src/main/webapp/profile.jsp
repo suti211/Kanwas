@@ -14,6 +14,12 @@
 	</style>
 
 	<body>
+	
+		<script>
+			var timer = setInterval(function() {
+		        document.getElementById("hideable").style.display = "none";
+		    }, 2000);
+		</script>
 		
 		<div class="menu-container">
 			<a href="./index"><img src="./images/logo.png" width="125" style="margin-bottom:-8px;margin-left:-125px"/></a>
@@ -31,6 +37,8 @@
 		<div class="login-title">
 			Profile
 		</div>
+		
+		${message}
 		
 		<div class="main-window">
 			<div style="margin:auto;padding-top:20px;text-align: center;">

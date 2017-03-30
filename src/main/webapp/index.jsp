@@ -46,6 +46,8 @@
 		</style>
 	
 		<script>	
+			
+			//Random text shows on homepage
 			function randomText() {
 				var texts = ["Made for you.", 
 							"Solution for you", 
@@ -54,9 +56,35 @@
 							"Almost vendible.",
 							"Send nudes.",
 							"Now its a girl."];
-				document.getElementById("about").innerHTML = "Kanwas. " + texts[Math.floor(Math.random()*texts.length)];
+				window.onload = document.getElementById("about").innerHTML = "Kanwas. " + texts[Math.floor(Math.random()*texts.length)];
 			}
 			window.onload = randomText;
+			
+			
+			//Animated number counting up
+			function animateValue(start, end, duration) {
+			    var current = start;
+			    var timer = setInterval(function() {
+			        current += 1;
+			        
+			        if (Math.random() >= 0.5){
+			        	document.getElementById("number1").innerHTML = current;
+			        }else{
+			        	document.getElementById("number2").innerHTML = current - 396;
+			        }
+			        
+			        if (Math.random() >= 0.5){
+			        	document.getElementById("number3").innerHTML = current - 246;
+			        }
+			        
+			        if (current == end) {
+			            clearInterval(timer);
+			        }
+			    }, 2000);
+			}
+
+			animateValue(532, 2500, 200000);
+			
 		</script>
 	
 		<div class="menu-container">
@@ -80,7 +108,7 @@
 		</div>
 		
 		<div style="font-size:24px; text-shadow: 0px 0px 5px rgba(0,0,0,0.3); width:100%; text-align: center; margin-top:0px;">
-			There are <span style="font-size:36px">517.230</span> users in kanwas who made <span style="font-size:36px">12.502</span> assignments and <span style="font-size:36px">211.345</span> modules.
+			There are <span id="number1" style="font-size:36px">534</span> users in kanwas who made <span id="number2" style="font-size:36px">137</span> assignments and <span id="number3" style="font-size:36px">287</span> modules.
 		</div>
 	
 		<div class="fullscreen-bg">

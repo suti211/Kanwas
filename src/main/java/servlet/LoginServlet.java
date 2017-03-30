@@ -70,6 +70,10 @@ public class LoginServlet extends HttpServlet
                     cookie.setMaxAge(3*(60 * 60));
                     //cookie.setDomain("/");
                     response.addCookie(cookie);
+                    
+                    
+                    response.sendRedirect("./profile?first=yes");
+                    return;
                 }
                 else
                 {

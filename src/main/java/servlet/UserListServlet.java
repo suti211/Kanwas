@@ -20,18 +20,17 @@ public class UserListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		Data d = Data.newInstance();
-		User currentUser = d.getCurrentUser(d.getCookie(request));
+		Data data = Data.newInstance();
+		User currentUser = data.getCurrentUser(data.getCookie(request));
 		if (currentUser == null)
 		{
-			request.setAttribute("extramenu", "Click here to log in.");
-			request.setAttribute("extraurl", "./login");
+			response.sendRedirect("./login");
+			return;
 		}else{
 			request.setAttribute("extramenu", currentUser.getFirstName());
 			request.setAttribute("extraurl", "./profile");
 		}
-		
-		Data data = Data.newInstance();
+			
 		String name;
 		String email;
 		String role;
