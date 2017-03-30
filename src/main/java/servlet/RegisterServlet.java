@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -42,21 +43,10 @@ public class RegisterServlet extends HttpServlet {
         if(pass.equals(pass2))
         {     
             //Convert password
-    		try {
-    	        byte[] bytesOfPassword = pass.getBytes("UTF-8");
-    	        MessageDigest md;
+			pass = encrypt(pass);
+			pass2 = "";
     			
-    			md = MessageDigest.getInstance("MD5");
-    			byte[] md5Password = md.digest(bytesOfPassword);
-    			pass = md5Password.toString();
-    			pass2 = "";
-    			
-    			System.out.println(pass);
-    		} catch (Exception e) {
-    			e.printStackTrace();
-    		}
-        	
-            System.out.println("Success! :)");
+            System.out.println("Password encrypted: " + pass);
         }
         else
         {
@@ -113,5 +103,18 @@ public class RegisterServlet extends HttpServlet {
     	System.out.println("!! GET !!");
     	request.setAttribute("message", "SAJT");
     	
-    }  
+    }
+    
+    public static String encrypt(String source) {
+    	   String md5 = null;
+    	   try {
+    	         MessageDigest mdEnc = MessageDigest.getInstance("MD5"); //Encryption algorithm
+    	         mdEnc.update(source.getBytes(), 0, source.length());
+    	         md5 = new BigInteger(1, mdEnc.digest()).toString(16); // Encrypted string
+    	        } 
+    	    catch (Exception ex) {
+    	         return null;
+    	    }
+    	    return md5;
+    	}
 }
