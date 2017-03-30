@@ -13,14 +13,11 @@ import user.User;
  * Servlet implementation class UserProfileServlet
  */
 public class UserProfileServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public UserProfileServlet() {
-        super();
-    }
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3172148145175828381L;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
