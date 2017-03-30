@@ -33,8 +33,33 @@ public class UserProfileServlet extends HttpServlet {
 		
 		Data d = Data.newInstance();
 		User currentUser = d.getCurrentUser(getCookie(request));
+		if (currentUser == null)
+		{
+			response.sendRedirect("./login.jsp");
+			return;
+		}
 		
-		request.setAttribute("tableContent", currentUser.getFullName());
+		
+		String tableContent = "<table>" + 
+				"<tbody>" + 
+						"<tr class=\"head\">" + 
+						"<td> <b>Name</b> </td>" + 
+						"<td> <b>E-Mail</b> </td>" + 
+						"<td> <b>Role</b> </td>" + 
+						"</tr>";
+		
+		tableContent += "<tr>" +
+				"<td>" + currentUser.getFullName() + "</td>"+
+				"<td>" + currentUser.getEmailAddress() + "</td>" + 
+				"<td>" + currentUser.getRole() + "</td>" + 
+				"</tr>";
+
+		tableContent += "</tbody>" + 
+					"</table>";
+		
+		
+		
+		request.setAttribute("tableContent", tableContent);
 		request.getRequestDispatcher("/profile.jsp").forward(request, response);
 	}
 

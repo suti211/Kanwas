@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,6 +19,15 @@ public class UserListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		Data d = Data.newInstance();
+		User currentUser = d.getCurrentUser(getCookie(request));
+		if (currentUser == null)
+		{
+			response.sendRedirect("./login.jsp");
+			return;
+		}
+		
 		Data data = Data.newInstance();
 		String name;
 		String email;
@@ -62,5 +72,24 @@ public class UserListServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
+	
+	//TODO: Implement
+		private String getCookie(HttpServletRequest request)
+		{	
+			Cookie[] cookies = request.getCookies();
+			if(cookies != null)
+			{
+				for (int i = 0; i < cookies.length; i++)
+				{
+					Cookie cookie = cookies[i];
+					if (cookie.getName().equals("sessionID"))
+					{	
+						return cookie.getValue(); 
+					}        	
+				}
+				return "";
+			}
+			return "";
+		}
 
 }
