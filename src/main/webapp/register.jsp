@@ -1,70 +1,89 @@
 <html>
-  <head>
-    <link rel="stylesheet" type="text/css" href="./stylesheet/style.css">
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
-    <title>Register - Kanwas</title>
-  </head>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="./stylesheet/style.css">
+		<link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+		<script src='https://www.google.com/recaptcha/api.js'></script>
+		<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+		<title>Register - Kanwas</title>
+	</head>
 
-  <style>
-    a:link {color:#fff;text-decoration: none;}
-    a:visited{color:#fff;}
-    td{width:45%;text-align: center;}
-  </style>
+	<style>
+		a:link {color:#fff;text-decoration: none;}
+		a:visited{color:#fff;}
+		td{width:45%;text-align: center;border:none;}
+	</style>
 
-  <body>
-    <div class="menu-container">
-        <div class="menu-item">Homepage</div>
-        <div class="menu-item">Grades</div>
-        <div class="menu-item">Assignments</div>
-        <div class="menu-item">About</div>
-    </div>
+	<body>
+		<div class="menu-container">
+			<a href="./index.html"><img src="./images/logo.png" width="125" style="margin-bottom:-8px;margin-left:-125px"/></a>
+			
+			<div class="inner-menu-container">
+				<div class="menu-item">Courses</div>
+				<div class="menu-item">Modules</div>
+				<div class="menu-item">About</div>
+				<a href="./register.jsp"><div class="menu-item" style="border:1px solid #000; padding: 0px 5px 0px 5px">Sign Up</div></a>
+			</div>
+		</div>
 
-    ${message}
+		<div class="login-title">
+			Register to Kanwa$
+		</div>
+	
+		${message}
 
-    <div class="main-window">
-      <div style="padding:10px;width:100%">
-        <center><img src="./images/logo.png" width="250px"/></center>
-      </div>
+		<div class="main-window">
+			<div style="padding:10px;width:100%;margin-top:20px;">
+				<center><img src="./images/logo.png" width="250px"/></center>
+			</div>
 
-      <div class="login-container">
-        <form method="POST" action="register">
-          <table style="color: #fff; width:100%;">
-            <tr>
-              <td><p style="margin-bottom:0px;">First name</p></td>
-              <td><p style="margin-bottom:0px;">Last name</p></td>
-            </tr>
+			<div class="login-container">
+				<form method="POST" action="register">
+					<table style="color: #fff; width:100%;">
+						<tr>
+						  <td><p style="margin-bottom:0px;">*First name</p></td>
+						  <td><p style="margin-bottom:0px;">*Last name</p></td>
+						</tr>
 
-            <tr>
-              <td><input style="width:100%;" type="text" id="first-name" name="first-name" class="text-input"/></td>
-              <td><input style="width:100%;"  type="text" id="last-name" name="last-name" class="text-input"/></td>
-            </tr>
-          </table>
+						<tr>
+						  <td><input style="width:100%;" type="text" id="first-name" name="first-name" class="text-input"/></td>
+						  <td><input style="width:100%;"  type="text" id="last-name" name="last-name" class="text-input"/></td>
+						</tr>
+					</table>
 
-          <p style="margin-bottom:0px;">E-mail</p>
-          <input style="width:100%;" type="email" id="email" name="email" class="text-input"/><br />
+					<p style="margin-bottom:0px;">*E-mail</p>
+					<input style="width:100%;" type="email" id="email" name="email" class="text-input"/><br />
 
-          <p style="margin-bottom:0px;">Password</p>
-          <input style="width:100%;" type="password" id="pass" name="pass" class="text-input"/>
+					<p style="margin-bottom:0px;">*Password</p>
+					<input style="width:100%;" type="password" id="pass" name="pass" class="text-input"/>
 
-          <p style="margin-bottom:0px;">Confirm password</p>
-          <input style="width:100%;" type="password" id="pass2" name="pass2" class="text-input"/>
+					<p style="margin-bottom:0px;">*Confirm password</p>
+					<input style="width:100%;" type="password" id="pass2" name="pass2" class="text-input"/>
+					
+					<p style="margin-bottom:0px;">*User role</p>
+					<table style="width:100%; margin-bottom:20px; margin-top:10px;border:1px solid #fff;padding:5px 0px 5px 0px">
+						<tr>
+							<td><input type="radio" name="role" checked value="student"> Student</td>
+							<td><input type="radio" name="role" value="mentor"> Mentor</td>
+						</tr>
+					</table>
+					
+					<center><div class="g-recaptcha" data-sitekey="6Lec2BoUAAAAAMYv9GAQ25ftNKUGUW7H4-xqj-jf"></div></center>
 
-          <table style="color: #fff; width:100%; margin-bottom:30px; margin-top:10px;">
-            <tr>
-              <td><input type="radio" name="role" checked value="student"> Student</td>
-              <td><input type="radio" name="role" value="mentor"> Mentor</td>
-            </tr>
-          </table>
-
-          <div>
-            <input type="submit" id="submit" name="register" value="Register" class="button" />
-          </div>
-        </form>
-        <div style="font-size:14px;">
-          <a href="./login.html">Login</a>
-        </div>
-      </div>
-    </div>
+					<div>
+						<input type="submit" id="submit" name="register" value="Register" class="button" style="margin-top:20px; "/>
+					</div>
+				</form>
+			
+				<div style="font-size:14px;">
+					<a href="./login.jsp">Login</a>
+				</div>	
+			</div>
+		</div>
+		
+		<div style="text-align: center; color:#fff; margin-top:5px;">
+			Help &#9679; About &#9679; Terms and Conditions
+		</div>
   </body>
 </html>
