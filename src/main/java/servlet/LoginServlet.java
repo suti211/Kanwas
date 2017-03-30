@@ -31,11 +31,15 @@ public class LoginServlet extends HttpServlet
             request.setAttribute("message", "<div class=\"error\"> ERROR: Requested field is empty.  </div>");
         }
 
+        
+        boolean emailFound = false;
         for (User user: users.getUserList())
-        {
+        {      	
             if(user.getEmailAddress().equals(email))
             {
+            	emailFound = true;
             	
+            	//Encrypt pass
             	try {
         	        pass = encrypt(pass);
         			
@@ -45,18 +49,29 @@ public class LoginServlet extends HttpServlet
         			e.printStackTrace();
         		}
             	
+            	
+            	//Password incorrect
                 if(user.getPassword().equals(pass))
                 {
                     //users.setCurrentUser(user);
                     request.setAttribute("message", "<div class=\"success\"> SUCCESS: You logged in, nigga.  </div>");
-                    System.out.println("Succesful authentication.");
+                    
+                    System.out.println("Succesful authentication: " + email);
                 }
                 else
                 {
                     request.setAttribute("message", "<div class=\"error\"> ERROR: E-mail or password is incorrect. </div>");
                 }
+                
             }
         }
+        
+        // E-mail not found
+        if (emailFound == false)
+        {
+        	request.setAttribute("message", "<div class=\"error\"> ERROR: E-mail or password is incorrect. </div>");
+        }
+        
         request.getRequestDispatcher("/login.jsp").forward(request, response);
     }
 
