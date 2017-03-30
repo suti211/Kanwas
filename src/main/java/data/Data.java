@@ -73,7 +73,7 @@ public class Data {
 	}
 
 	public String stringGenerator() {
-		char[] chars = "abcdefghijklmnopqrstuvwxyz0123456789".toCharArray();
+		char[] chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".toCharArray();
 		String randString="";
 		Random random = new Random();
 		for (int i = 0; i < 20; i++) {
