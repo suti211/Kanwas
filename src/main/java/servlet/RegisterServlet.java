@@ -99,6 +99,7 @@ public class RegisterServlet extends HttpServlet {
         if(!alreadyExist){
         	System.out.println("u: " +"szar"); 
         	data.addUser(role, firstName, lastName, email, pass);
+        	request.setAttribute("message", "<div class=\"success\"> SUCCESS: You succesfully created an account.  </div>");
         } else {
         	request.setAttribute("message", "<div class=\"error\"> ERROR: E-mail address already registered  </div>");
         }
