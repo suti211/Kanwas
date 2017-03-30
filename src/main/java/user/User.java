@@ -90,7 +90,7 @@ public abstract class User {
 	}
 	
 	private void saveToLocalDB(User user){
-		PersistentStorage ps = PersistentStorage.newInstance("src/main/java/io/user-db.xml");
+		PersistentStorage ps = PersistentStorage.newInstance();
 		try {
 			ps.modifyUser(user);			
 		} catch (Exception e) {
