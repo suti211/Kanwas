@@ -12,6 +12,8 @@ import java.io.IOException;
 import java.security.MessageDigest;
 import java.util.ArrayList;
 
+import static data.Encrypt.encrypt;
+
 /**
  * Created by tamasferenc on 2017.03.29..
  */
@@ -36,12 +38,7 @@ public class LoginServlet extends HttpServlet
             	String pass = "";
             	
             	try {
-        	        byte[] bytesOfPassword = password.getBytes("UTF-8");
-        	        MessageDigest md;
-        			
-        			md = MessageDigest.getInstance("MD5");
-        			byte[] md5Password = md.digest(bytesOfPassword);
-        			pass = md5Password.toString();
+        	        pass = encrypt(pass);
         			
         			System.out.println("re-generated password: " + pass);
         			
@@ -61,6 +58,7 @@ public class LoginServlet extends HttpServlet
                 }
             }
         }
+        request.getRequestDispatcher("/login.jsp").forward(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
