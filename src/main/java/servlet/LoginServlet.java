@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.security.MessageDigest;
 import java.util.ArrayList;
 
 /**
@@ -32,10 +33,27 @@ public class LoginServlet extends HttpServlet
         {
             if(user.getEmailAddress().equals(email))
             {
-                if(user.getPassword().equals(password))
+            	String pass = "";
+            	
+            	try {
+        	        byte[] bytesOfPassword = password.getBytes("UTF-8");
+        	        MessageDigest md;
+        			
+        			md = MessageDigest.getInstance("MD5");
+        			byte[] md5Password = md.digest(bytesOfPassword);
+        			pass = md5Password.toString();
+        			
+        			System.out.println("re-generated password: " + pass);
+        			
+        		} catch (Exception e) {
+        			e.printStackTrace();
+        		}
+            	
+                if(user.getPassword().equals(pass))
                 {
                     //users.setCurrentUser(user);
                     request.setAttribute("message", "<div class=\"success\"> SUCCESS: You logged in, nigga.  </div>");
+                    System.out.println("Succesful authentication.");
                 }
                 else
                 {
