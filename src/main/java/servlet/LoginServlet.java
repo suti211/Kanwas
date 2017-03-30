@@ -1,18 +1,17 @@
 package servlet;
 
-import data.Data;
-import user.User;
+import static data.Encrypt.encrypt;
+
+import java.io.IOException;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.security.MessageDigest;
-import java.util.ArrayList;
 
-import static data.Encrypt.encrypt;
+import data.Data;
+import user.User;
 
 /**
  * Created by tamasferenc on 2017.03.29..
@@ -57,6 +56,11 @@ public class LoginServlet extends HttpServlet
                     request.setAttribute("message", "<div class=\"success\"> SUCCESS: You logged in, nigga.  </div>");
                     users.putToMap(user, users.stringGenerator());
                     System.out.println("Succesful authentication: " + email);
+                    
+                    Cookie cookie = new Cookie("sessionID", users.getSessions().get(user));
+                    cookie.setMaxAge(3*(60 * 60));
+                    cookie.setDomain("/");
+                    response.addCookie(cookie);
                 }
                 else
                 {

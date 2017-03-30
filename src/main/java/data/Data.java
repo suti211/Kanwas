@@ -88,7 +88,7 @@ public class Data {
 		sessions.put(u,s);
 	}
 
-	public Map<User, String> getCookies() {
+	public Map<User, String> getSessions() {
 		return sessions;
 	}
 }
