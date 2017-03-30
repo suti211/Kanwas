@@ -22,16 +22,15 @@ public class UserListServlet extends HttpServlet {
 		String name;
 		String email;
 		String role;
-		String tableContent = null;
+		String tableContent = "";
 		
-		tableContent.join(""
-				, "<table>"
-				, "<tbody>"
-				,"<tr>"
-				,"<td> Name </td>"
-				,"<td> E-Mail </td>"
-				,"<td> Role </td>"
-				,"</tr>");
+		tableContent += "<table>" + 
+		"<tbody>" + 
+				"<tr class=\"head\">" + 
+				"<td> <b>Name</b> </td>" + 
+				"<td> <b>E-Mail</b> </td>" + 
+				"<td> <b>Role</b> </td>" + 
+				"</tr>";
 		
 		
 		for (User user : data.getUserList()) {
@@ -39,21 +38,22 @@ public class UserListServlet extends HttpServlet {
 			email = user.getEmailAddress();
 			role = user.getRole();
 			
-			tableContent.join(""
-					,"<tr>"
-					,"<td>" + name + "</td>"
-					,"<td>" + email + "</td>"
-					,"<td>" + role + "</td>"
-					,"</tr>");
+			tableContent += "<tr>" +
+							"<td>" + name + "</td>"+
+							"<td>" + email + "</td>" + 
+							"<td>" + role + "</td>" + 
+							"</tr>";
 		}
 		
-		tableContent.join(""
-				, "</tbody>"
-				, "</table>");
+		tableContent += "</tbody>" + 
+						"</table>";
 		
-		request.setAttribute("fullname", data.getCurrentUser().getFullName());
+		//TODO: data.getCurrentUser().getFullName()
+		request.setAttribute("fullname", "Dezső");
 		request.setAttribute("tableContent", tableContent);
 		System.out.println("Table content generated and sent!");
+		
+		request.getRequestDispatcher("/user.jsp").forward(request, response);
 	}
 
 	/**

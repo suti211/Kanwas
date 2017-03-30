@@ -59,7 +59,7 @@ public class LoginServlet extends HttpServlet
                     
                     Cookie cookie = new Cookie("sessionID", users.getSessions().get(user));
                     cookie.setMaxAge(3*(60 * 60));
-                    cookie.setDomain("/");
+                    //cookie.setDomain("/");
                     response.addCookie(cookie);
                 }
                 else
@@ -82,4 +82,24 @@ public class LoginServlet extends HttpServlet
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
+    
+    
+    //TODO: Implement
+	private String getCookie(HttpServletRequest request)
+	{	
+		Cookie[] cookies = request.getCookies();
+		if(cookies != null)
+		{
+			for (int i = 0; i < cookies.length; i++)
+			{
+				Cookie cookie = cookies[i];
+				if (cookie.getName().equals("sessionID"))
+				{	
+					return cookie.getValue(); 
+				}        	
+			}
+			return "";
+		}
+		return "";
+	}
 }
