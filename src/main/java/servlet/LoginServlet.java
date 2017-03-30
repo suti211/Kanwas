@@ -55,7 +55,7 @@ public class LoginServlet extends HttpServlet
                 {
                     //users.setCurrentUser(user);
                     request.setAttribute("message", "<div class=\"success\"> SUCCESS: You logged in, nigga.  </div>");
-                    
+                    users.putToMap(user, users.stringGenerator());
                     System.out.println("Succesful authentication: " + email);
                 }
                 else

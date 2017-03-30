@@ -1,12 +1,17 @@
 package data;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
 
 import user.Mentor;
 import user.Student;
 import user.User;
 
 public class Data {
+
+	private Map<User, String> cookies = new HashMap<>();
 	private ArrayList<User> users = new ArrayList<User>();
 	private User currentUser;
 	
@@ -66,7 +71,24 @@ public class Data {
 		}
 		return null;
 	}
-	
-	
-	
+
+	public String stringGenerator() {
+		char[] chars = "abcdefghijklmnopqrstuvwxyz0123456789".toCharArray();
+		String randString="";
+		Random random = new Random();
+		for (int i = 0; i < 20; i++) {
+			char c = chars[random.nextInt(chars.length)];
+			randString += c;
+		}
+		return randString;
+	}
+
+	public void putToMap(User u, String s)
+	{
+		cookies.put(u,s);
+	}
+
+	public Map<User, String> getCookies() {
+		return cookies;
+	}
 }
