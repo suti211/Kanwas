@@ -155,7 +155,7 @@ public class PersistentStorage {
 				file.createNewFile();
 				
 				FileWriter fw = new FileWriter(file);
-				fw.write("<users>\n<users>");
+				fw.write("<users>\n</users>");
 				fw.close();
 				
 			} catch (Exception e){
