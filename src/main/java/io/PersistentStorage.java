@@ -73,9 +73,9 @@ public class PersistentStorage {
 			String password = nodes.item(i).getAttributes().item(PASSWORD).getTextContent();
 
 			if (role.equals("student")) {
-				u = new Student(firstName, lastName, email, role, password);
+				u = new Student(firstName, lastName, email, role, password, false);
 			} else if (role.equals("mentor")) {
-				u = new Mentor(firstName, lastName, email, role, password);
+				u = new Mentor(firstName, lastName, email, role, password, false);
 			}
 			System.out.println(u);
 			users.add(u);

@@ -1,6 +1,6 @@
 package user;
 
-public class Student extends User{
+public class Student extends User {
 
 	public Student(String firstName, String lastName, String emailAddress, String role, String password) {
 		super(firstName, lastName, emailAddress, role, password);
@@ -12,5 +12,9 @@ public class Student extends User{
 		// TODO Auto-generated constructor stub
 	}
 
-	
+	public Student(String firstName, String lastName, String emailAddress, String role, String password,
+			boolean saveFlag) {
+		super(firstName, lastName, emailAddress, role, password, saveFlag);
+	}
+
 }

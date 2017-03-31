@@ -37,6 +37,15 @@ public abstract class User {
 		addToLocalDB(this);
 	}
 	
+	public User(String firstName, String lastName, String emailAddress, String role, String password, boolean saveFlag) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.emailAddress = emailAddress;
+		this.role = role;
+		this.password = password;
+	}
+	
 	public void changeRole(){
 		if(role.equals("student"))
 			role = "mentor";
