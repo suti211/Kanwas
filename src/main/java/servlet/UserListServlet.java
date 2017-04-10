@@ -19,7 +19,6 @@ public class UserListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		Data data = Data.newInstance();
 		User currentUser = data.getCurrentUser(data.getCookie(request));
 		if (currentUser == null)

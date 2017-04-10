@@ -52,6 +52,14 @@ public class RegisterServlet extends HttpServlet {
 			request.setAttribute("extraurl", "./profile");
 		}
         
+		
+		//Weak password
+        if (pass.length() < 6)
+        {
+        	request.setAttribute("message", "<div class=\"error\"> ERROR: Password is too weak (at least 6 characters).  </div>");
+        	request.getRequestDispatcher("/register.jsp").forward(request, response);
+        	return;
+        }  
         
         //Password does not match
         if(pass.equals(pass2))
@@ -65,12 +73,16 @@ public class RegisterServlet extends HttpServlet {
         else
         {
         	request.setAttribute("message", "<div class=\"error\"> ERROR: Password does not match. </div>");
+        	request.getRequestDispatcher("/register.jsp").forward(request, response);
+        	return;
         }
         
         //Empty fields
         if (firstName.equals("") || lastName.equals("") || email.equals("") || role.equals(""))
         {
         	request.setAttribute("message", "<div class=\"error\"> ERROR: Requested field is empty.  </div>");
+        	request.getRequestDispatcher("/register.jsp").forward(request, response);
+        	return;
         }     
         
         System.out.println("email: " + email);
