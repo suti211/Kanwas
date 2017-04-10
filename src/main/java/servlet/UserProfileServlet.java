@@ -6,6 +6,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import data.Data;
 import user.User;
@@ -26,8 +27,14 @@ public class UserProfileServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		Data d = Data.newInstance();
-//		User currentUser = d.getCurrentUser(d.getCookie(request));
-		User currentUser = (User)request.getSession(false).getAttribute("user");
+		
+		User currentUser = null;
+    	HttpSession session = request.getSession(false);
+    	
+    	if(session != null){
+    		currentUser = (User) request.getSession(false).getAttribute("user");
+    	}
+		
 		if (currentUser == null)
 		{
 			response.sendRedirect("./login");

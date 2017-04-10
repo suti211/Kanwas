@@ -1,19 +1,17 @@
 package servlet;
 
-import data.Data;
-import user.User;
+import static data.Encrypt.encrypt;
+
+import java.io.IOException;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.math.BigInteger;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import javax.servlet.http.HttpSession;
 
-import static data.Encrypt.encrypt;
+import data.Data;
+import user.User;
 
 /**
  * Created by tamasferenc on 2017.03.29..
@@ -100,8 +98,13 @@ public class RegisterServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     	Data d = Data.newInstance();
-    	User currentUser = (User) request.getSession(false).getAttribute("user");
-//		User currentUser = d.getCurrentUser(d.getCookie(request));
+    	User currentUser = null;
+    	HttpSession session = request.getSession(false);
+    	
+    	if(session != null){
+    		currentUser = (User) request.getSession(false).getAttribute("user");
+    	}
+    	
 		if (currentUser == null)
 		{
 			request.setAttribute("extramenu", "Click here to log in.");

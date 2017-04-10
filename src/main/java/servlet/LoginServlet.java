@@ -100,8 +100,14 @@ public class LoginServlet extends HttpServlet
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     	Data d = Data.newInstance();
-    	User currentUser = (User) request.getSession(false).getAttribute("user");
-//		User currentUser = d.getCurrentUser(d.getCookie(request));
+    	
+    	User currentUser = null;
+    	HttpSession session = request.getSession(false);
+    	
+    	if(session != null){
+    		currentUser = (User) request.getSession(false).getAttribute("user");
+    	}
+    	
 		if (currentUser == null)
 		{
 			request.setAttribute("extramenu", "Click here to log in.");
