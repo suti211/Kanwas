@@ -26,7 +26,8 @@ public class UserProfileServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		Data d = Data.newInstance();
-		User currentUser = d.getCurrentUser(d.getCookie(request));
+//		User currentUser = d.getCurrentUser(d.getCookie(request));
+		User currentUser = (User)request.getSession(false).getAttribute("user");
 		if (currentUser == null)
 		{
 			response.sendRedirect("./login");

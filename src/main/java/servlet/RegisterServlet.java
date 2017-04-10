@@ -42,7 +42,8 @@ public class RegisterServlet extends HttpServlet {
         role = request.getParameter("role");
         
         Data data = Data.newInstance();
-        User currentUser = data.getCurrentUser(data.getCookie(request));
+        User currentUser = (User)request.getSession(false).getAttribute("user");
+//        User currentUser = data.getCurrentUser(data.getCookie(request));
 		if (currentUser == null)
 		{
 			request.setAttribute("extramenu", "Click here to log in.");
@@ -99,7 +100,8 @@ public class RegisterServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     	Data d = Data.newInstance();
-		User currentUser = d.getCurrentUser(d.getCookie(request));
+    	User currentUser = (User) request.getSession(false).getAttribute("user");
+//		User currentUser = d.getCurrentUser(d.getCookie(request));
 		if (currentUser == null)
 		{
 			request.setAttribute("extramenu", "Click here to log in.");
