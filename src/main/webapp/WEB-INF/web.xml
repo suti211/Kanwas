@@ -52,6 +52,17 @@
   	<servlet-name>AddTextPageServlet</servlet-name>
   	<url-pattern>/AddTextPageServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>AddAssignmentPageServlet</display-name>
+  	<servlet-name>AddAssignmentPageServlet</servlet-name>
+  	<servlet-class>servlet.AddAssignmentPageServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>AddAssignmentPageServlet</servlet-name>
+  	<url-pattern>/AddAssignmentPageServlet</url-pattern>
+  </servlet-mapping>
   
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
