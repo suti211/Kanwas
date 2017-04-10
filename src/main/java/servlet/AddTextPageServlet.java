@@ -30,13 +30,31 @@ public class AddTextPageServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
+		HttpSession session = request.getSession(false);
 		
-		String pageTitle = request.getParameter("pageTitle");
-		String pageContent = request.getParameter("pageContent");
-		System.out.println("Title: " + pageTitle + " , Content: " + pageContent);
+		if(isUserLoggedIn(request, response)){
+			String pageTitle = request.getParameter("pageTitle");
+			String pageContent = request.getParameter("pageContent");
+			System.out.println("Title: " + pageTitle + " , Content: " + pageContent);
+			
+			doGet(request, response);
+		}
+		else{
+			response.sendRedirect("./login");
+		}
 		
-		doGet(request, response);
+		
+	}
+	
+	private boolean isUserLoggedIn(HttpServletRequest request, HttpServletResponse response) throws IOException{
+		HttpSession session = request.getSession(false);
+		if(session == null){
+			System.out.println("No user logged in, redirected to login page...(AddTexTPageServlet)");
+			return false;
+		}
+		else{
+			return true;
+		}
 	}
 
 }
