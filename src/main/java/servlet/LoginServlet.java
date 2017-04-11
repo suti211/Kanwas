@@ -9,6 +9,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import data.Data;
 import user.User;
@@ -26,7 +27,8 @@ public class LoginServlet extends HttpServlet
         Data users = Data.newInstance();
 		
         //Redirect user if already logged in
-        User currentUser = users.getCurrentUser(users.getCookie(request));
+		// User currentUser = users.getCurrentUser(users.getCookie(request));
+        User currentUser = (User) request.getSession(false).getAttribute("user");
 		if (currentUser != null)
 		{
 			response.sendRedirect("./profile");
@@ -63,13 +65,15 @@ public class LoginServlet extends HttpServlet
                 {
                     //users.setCurrentUser(user);
                     request.setAttribute("message", "<div class=\"success\"> SUCCESS: You logged in, nigga.  </div>");
-                    users.putToMap(user, users.stringGenerator());
                     System.out.println("Succesful authentication: " + email);
                     
-                    Cookie cookie = new Cookie("sessionID", users.getSessions().get(user));
-                    cookie.setMaxAge(3*(60 * 60));
-                    //cookie.setDomain("/");
-                    response.addCookie(cookie);
+//                    Cookie cookie = new Cookie("sessionID", users.getSessions().get(user));
+//                    cookie.setMaxAge(3*(60 * 60));
+//                    //cookie.setDomain("/");
+//                    response.addCookie(cookie);
+//                    
+                    HttpSession session = request.getSession(true);
+                    session.setAttribute("user", user);
                     
                     
                     response.sendRedirect("./profile?first=yes");
@@ -96,7 +100,14 @@ public class LoginServlet extends HttpServlet
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     	Data d = Data.newInstance();
-		User currentUser = d.getCurrentUser(d.getCookie(request));
+    	
+    	User currentUser = null;
+    	HttpSession session = request.getSession(false);
+    	
+    	if(session != null){
+    		currentUser = (User) request.getSession(false).getAttribute("user");
+    	}
+    	
 		if (currentUser == null)
 		{
 			request.setAttribute("extramenu", "Click here to log in.");
