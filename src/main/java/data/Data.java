@@ -45,14 +45,7 @@ public class Data {
 	}
 
 	public void addUser(String userType, String firstName, String lastName, String emailAddress){
-		switch(userType){
-		case "student":
-			users.add(new Student(firstName, lastName, emailAddress, userType));
-			break;
-		case "mentor":
-			users.add(new Mentor(firstName, lastName, emailAddress, userType));
-			break;
-		}
+		addUser(userType, firstName, lastName, emailAddress, null);
 	}
 	
 	public void addUser(String userType, String firstName, String lastName, String emailAddress, String password){
