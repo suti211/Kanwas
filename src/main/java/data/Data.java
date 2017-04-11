@@ -75,42 +75,4 @@ public class Data {
 		return null;
 	}
 
-	public String stringGenerator() {
-		char[] chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789?#!+§/=(){}".toCharArray();
-		String randString="";
-		Random random = new Random();
-		for (int i = 0; i < 20; i++) {
-			char c = chars[random.nextInt(chars.length)];
-			randString += c;
-		}
-		return randString;
-	}
-
-	public void putToMap(User u, String s)
-	{
-		sessions.put(u,s);
-	}
-
-	public Map<User, String> getSessions() {
-		return sessions;
-	}
-	
-	//TODO: Implement
-	public String getCookie(HttpServletRequest request)
-	{	
-		Cookie[] cookies = request.getCookies();
-		if(cookies != null)
-		{
-			for (int i = 0; i < cookies.length; i++)
-			{
-				Cookie cookie = cookies[i];
-				if (cookie.getName().equals("sessionID"))
-				{	
-					return cookie.getValue(); 
-				}        	
-			}
-			return "";
-		}
-		return "";
-	}
 }

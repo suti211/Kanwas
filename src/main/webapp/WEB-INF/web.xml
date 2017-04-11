@@ -41,6 +41,39 @@
     <servlet-name>UserProfileServlet</servlet-name>
     <url-pattern>/profile</url-pattern>
   </servlet-mapping>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>AddTextPageServlet</display-name>
+  	<servlet-name>AddTextPageServlet</servlet-name>
+  	<servlet-class>servlet.AddTextPageServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>AddTextPageServlet</servlet-name>
+  	<url-pattern>/AddTextPageServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<description>
+  	</description>
+  	<display-name>AddAssignmentPageServlet</display-name>
+  	<servlet-name>AddAssignmentPageServlet</servlet-name>
+  	<servlet-class>servlet.AddAssignmentPageServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>AddAssignmentPageServlet</servlet-name>
+  	<url-pattern>/AddAssignmentPageServlet</url-pattern>
+  </servlet-mapping>
+    <servlet>
+  	<description>
+  	</description>
+  	<display-name>CurriculumServlet</display-name>
+  	<servlet-name>CurriculumServlet</servlet-name>
+  	<servlet-class>servlet.CurriculumServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>CurriculumServlet</servlet-name>
+  	<url-pattern>/CurriculumServlet</url-pattern>
+  </servlet-mapping>
   
   <welcome-file-list>
     <welcome-file>index</welcome-file>
