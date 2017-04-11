@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
  */
 public class AddAssignmentPageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private UserLoginManager LoginManager = UserLoginManager.getInstance();
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -32,12 +33,17 @@ public class AddAssignmentPageServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		
-		String assignmentTitle = request.getParameter("assignmentTitle");
-		String assignmentContent = request.getParameter("assignmentContent");
-		int assignmentMaxPoint = Integer.parseInt(request.getParameter("assignmentMaxPoint"));
-		
-		System.out.println("Title: " + assignmentTitle + " , Content: " + assignmentContent + " , MaxPoint: " + assignmentMaxPoint);
-		doGet(request, response);
+		if(LoginManager.isUserLoggedIn(request, response)){
+			String assignmentTitle = request.getParameter("assignmentTitle");
+			String assignmentContent = request.getParameter("assignmentContent");
+			int assignmentMaxPoint = Integer.parseInt(request.getParameter("assignmentMaxPoint"));
+			
+			System.out.println("Title: " + assignmentTitle + " , Content: " + assignmentContent + " , MaxPoint: " + assignmentMaxPoint);
+			doGet(request, response);
+		}
+		else{
+			response.sendRedirect("./login");
+		}		
 	}
 
 }
