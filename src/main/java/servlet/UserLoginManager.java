@@ -8,7 +8,7 @@ import javax.servlet.http.HttpSession;
 
 public class UserLoginManager {
 	
-	private boolean isUserLoggedIn(HttpServletRequest request, HttpServletResponse response) throws IOException{
+	public boolean isUserLoggedIn(HttpServletRequest request, HttpServletResponse response) throws IOException{
 		HttpSession session = request.getSession(false);
 		if(session == null){
 			System.out.println("No user logged in, redirected to login page...(AddTexTPageServlet)");
