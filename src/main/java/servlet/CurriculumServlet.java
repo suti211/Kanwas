@@ -36,6 +36,7 @@ public class CurriculumServlet extends HttpServlet {
 			for (Module module : modules) {
 				if(module.isPublished())
 					modulesTitle.add(module.getTitle());
+					modulesTitle.add(module.getContent());
 			}
 			jsonString = new Gson().toJson(modulesTitle);
 		}
