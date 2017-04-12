@@ -7,5 +7,6 @@ $(document).ready(function () {
 		$.post("AddAssignmentPageServlet", { json: JSON.stringify(assignMent) }, function (response) {
 			console.log(response);
 		});
+		//asdgfsdhgdj
 	});
 });
