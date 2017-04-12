@@ -16,6 +16,7 @@ public class Data {
 	private ArrayList<User> users = new ArrayList<User>();
 	private User currentUser;
 	private List<Module> modules;
+	private GypsyModules dummyList;
 	
 	private static Data singleton = new Data( );	
 	private Data() { }
@@ -58,7 +59,14 @@ public class Data {
 		}
 	}
 	
-	
+	public List<Module> getModules() {
+		return modules;
+	}
+
+	public void setModules(List<Module> modules) {
+		this.modules = modules;
+	}
+
 	public User getUserbyName(String name){
 		for (User user : users) {
 			if(user.getFullName().equals(name))
