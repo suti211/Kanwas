@@ -9,6 +9,7 @@ import module.Module;
 import user.Mentor;
 import user.Student;
 import user.User;
+import module.TextPage;
 
 public class Data {
 
@@ -20,6 +21,8 @@ public class Data {
 	
 	private static Data singleton = new Data( );	
 	private Data() {
+		dummyList = new GypsyModules();
+		modules = dummyList.getModules();
 	}
 
 	public static Data newInstance( ) {
@@ -61,8 +64,6 @@ public class Data {
 	}
 	
 	public List<Module> getModules() {
-		dummyList = new GypsyModules();
-		modules = dummyList.getModules();
 		return modules;
 	}
 

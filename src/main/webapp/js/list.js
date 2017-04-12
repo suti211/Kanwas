@@ -6,7 +6,7 @@ function getListFromServer() {
         //console.log(res.length);
 
         for (var i = 0; i < res.length; i++) {
-            $(".generatable").append("<li name=\"" + res[i].id + "\">" + res[i].title + "<div class=\"grab\"><i class=\"fa fa-bars\" aria-hidden=\"true\"></i></div><div class=\"list-content\">" + res[i].content + "</div></li>");
+            $(".generatable").append("<li>" + res[i].title + "<div class=\"grab\" name=\"" + res[i].id + "\"><i class=\"fa fa-bars\" aria-hidden=\"true\"></i></div><div class=\"list-content\">" + res[i].content + "</div></li>");
         }
 
         sortableList();
@@ -26,7 +26,7 @@ function sortableList() {
             },
             stop: function () {
                 $("#sortable .grab").each(function () {
-                    $.post("CurriculumServlet", { id: $(this).attr("name"), pageIndex: $(this).index() });
+                    $.post("CurriculumServlet", { id: $(this).attr("name"), pageIndex: $(this).parent().index() });
                 });
             }
         });

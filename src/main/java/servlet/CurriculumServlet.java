@@ -32,6 +32,9 @@ public class CurriculumServlet extends HttpServlet {
 		List<Module> modules = data.getModules();
 		String jsonString = null;
 		List<String> modulesTitle = new ArrayList<>();
+		modules.sort(new ModuleComparator());
+		System.out.println(data.getModules());
+		
 
 		if (modules.size() > 0 ) {
 			for (Module module : modules) {
@@ -61,17 +64,17 @@ public class CurriculumServlet extends HttpServlet {
 		System.out.println("jött valami szar");
 		List<Module> modules = data.getModules();
 		
-		int id = Integer.valueOf((String) request.getParameter("id"));
-		int pageIndex = Integer.valueOf((String) request.getParameter("pageIndex"));
+		int id = Integer.valueOf((String)request.getParameter("id"));
+		int pageIndex = Integer.valueOf((String)request.getParameter("pageIndex"));
+		System.out.println("id : " + id);
+		System.out.println("pageIndex : " + pageIndex);
 		
 		for (Module module : modules) {
 			if(module.getId() == id){
-				module.setId(pageIndex);
+				module.setIndex(pageIndex);
+				System.out.println("ifbe van ez a geci");
 			}
 		}
-		
-		data.getModules().sort(new ModuleComparator());
-		System.out.println(data.getModules());
 		
 	}
 	
@@ -79,12 +82,12 @@ public class CurriculumServlet extends HttpServlet {
 
 		@Override
 		public int compare(Module o1, Module o2) {
-			if(o1.getId() > o2.getId())
+			if(o1.getIndex() > o2.getIndex())
 				return 1;
-			if(o1.getId() == o2.getId())
-				return 0;
-			else
+			if(o1.getIndex() < o2.getIndex())
 				return -1;
+			else
+				return 0;
 		}		
 	}
 	
