@@ -6,10 +6,9 @@ import user.Student;
 
 public class TextPage extends Module {
 
-	private String answer;
-
-	public TextPage(String title, String content, int id) {
-		super(title, content, id);
+	public TextPage(String title, String content, int id, boolean published) {
+		super(title, content, id, published);
+		this.published = published;
 	}
 
 }

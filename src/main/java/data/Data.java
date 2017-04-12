@@ -2,12 +2,10 @@ package data;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-
+import module.Module;
 import user.Mentor;
 import user.Student;
 import user.User;
@@ -17,6 +15,7 @@ public class Data {
 	private Map<User, String> sessions = new HashMap<>();
 	private ArrayList<User> users = new ArrayList<User>();
 	private User currentUser;
+	private List<Module> modules;
 	
 	private static Data singleton = new Data( );	
 	private Data() { }
@@ -58,6 +57,7 @@ public class Data {
 			break;
 		}
 	}
+	
 	
 	public User getUserbyName(String name){
 		for (User user : users) {
