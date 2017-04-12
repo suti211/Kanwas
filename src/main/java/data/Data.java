@@ -19,7 +19,8 @@ public class Data {
 	private GypsyModules dummyList;
 	
 	private static Data singleton = new Data( );	
-	private Data() { modules = dummyList.getModules(); }
+	private Data() {
+	}
 
 	public static Data newInstance( ) {
 		return singleton;
@@ -60,6 +61,8 @@ public class Data {
 	}
 	
 	public List<Module> getModules() {
+		dummyList = new GypsyModules();
+		modules = dummyList.getModules();
 		return modules;
 	}
 

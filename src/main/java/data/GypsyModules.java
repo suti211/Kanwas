@@ -14,6 +14,11 @@ public class GypsyModules {
 		TextPage tp2 = new TextPage("Kill yoursel already", "Nobody cares, f*** off!", 2, true);
 		TextPage tp3 = new TextPage("Kill yoursel already", "Nobody cares, f*** off!", 3, true);
 		TextPage tp4 = new TextPage("Kill yoursel already", "Nobody cares, f*** off!", 4, true);
+		
+		modules.add(tp1);
+		modules.add(tp2);
+		modules.add(tp3);
+		modules.add(tp4);
 	}
 
 	public List<Module> getModules() {
