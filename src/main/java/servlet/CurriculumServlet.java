@@ -38,11 +38,16 @@ public class CurriculumServlet extends HttpServlet {
 			}
 			jsonString = new Gson().toJson(modulesTitle);
 		}
+		else{
+			System.out.println("data.getModules() is NULL!");
+		}
 
 		response.setContentType("application/json");
 		PrintWriter out = response.getWriter();
 		if (jsonString != null)
 			out.print(jsonString);
+		else
+			System.out.println("jsonString is NULL!");
 
 	}
 
