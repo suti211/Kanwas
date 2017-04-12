@@ -5,45 +5,37 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-/**
- * Servlet implementation class AddTextPageServlet
- */
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import module.TextPage;
+
+
 public class AddTextPageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UserLoginManager LoginManager = UserLoginManager.getInstance();
-	
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+
     public AddTextPageServlet() {
         super();
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession(false);
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
+		String jsonString = null;
 		
-		if(LoginManager.isUserLoggedIn(request, response)){
-			String pageTitle = request.getParameter("pageTitle");
-			String pageContent = request.getParameter("pageContent");
-			System.out.println("Title: " + pageTitle + " , Content: " + pageContent);
-			
-			doGet(request, response);
+		if(request.getParameter("json") == null){
+			System.out.println("'json' parameter is null!");
+			return;
 		}
-		else{
-			response.sendRedirect("./login");
-		}
+				
+		jsonString = request.getParameter("json");
+		System.out.println("JSON String: " + jsonString);
+		
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		TextPage textpage = gson.fromJson(jsonString, TextPage.class);
 		
 		
 	}
