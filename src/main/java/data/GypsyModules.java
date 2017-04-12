@@ -10,10 +10,10 @@ public class GypsyModules {
 	List<Module> modules = new ArrayList<>();
 
 	public GypsyModules() {
-		TextPage tp1 = new TextPage("Kill yoursel already", "Nobody cares, f*** off!", 1, true);
-		TextPage tp2 = new TextPage("Kill yoursel already", "Nobody cares, f*** off!", 2, true);
-		TextPage tp3 = new TextPage("Kill yoursel already", "Nobody cares, f*** off!", 3, true);
-		TextPage tp4 = new TextPage("Kill yoursel already", "Nobody cares, f*** off!", 4, true);
+		TextPage tp1 = new TextPage("Kill yourself already", "JUST DO IT!", 1, true);
+		TextPage tp2 = new TextPage("Get rekt son", "WOW!", 2, true);
+		TextPage tp3 = new TextPage("Daamn son", "dank memes", 3, true);
+		TextPage tp4 = new TextPage("Git gud", "GG WP", 4, true);
 		
 		modules.add(tp1);
 		modules.add(tp2);
