@@ -1,20 +1,11 @@
-function sendAssignment() {
-	var assignMent = { title: $("#title").text, question: $("#question").text, maxScore: $("#points") }
-	var JSONString = JSON.stringify(assignMent);
-
-	$.ajax(
-		method: "POST",
-		url: "AddAssignmentPageServlet",
-		data: { json: JSONString },
-		dataType: "application/json;charset=UTF-8",
-		success: reportSuccess(response),
-	);
-}
-
-function reportSuccess(response) {
-	//FILL
-}
 
 $(document).ready(function () {
-	$("#submit-assignment").on("click", sendAssignment());
+	$("#submit-assignment").click(function () {
+		var assignMent = { title: $("#title").val(), question: $("#question").val(), maxScore: $("#points").val(), published: $("#published").val() };
+		console.log(assignMent);
+
+		$.post("AddAssignmentPageServlet", { json: JSON.stringify(assignMent) }, function (response) {
+			console.log(response);
+		});
+	});
 });
