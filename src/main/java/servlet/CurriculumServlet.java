@@ -3,6 +3,7 @@ package servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -58,6 +59,34 @@ public class CurriculumServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("jött valami szar");
+		List<Module> modules = data.getModules();
+		
+		int id = Integer.valueOf(request.getParameter("id"));
+		int pageIndex = Integer.valueOf(request.getParameter("pageIndex"));
+		
+		for (Module module : modules) {
+			if(module.getId() == id){
+				module.setId(pageIndex);
+			}
+		}
+		
+		data.getModules().sort(new ModuleComparator());
+		System.out.println(data.getModules());
+		
 	}
+	
+	private class ModuleComparator implements Comparator<Module>{
+
+		@Override
+		public int compare(Module o1, Module o2) {
+			if(o1.getId() > o2.getId())
+				return 1;
+			if(o1.getId() == o2.getId())
+				return 0;
+			else
+				return -1;
+		}		
+	}
+	
 
 }
