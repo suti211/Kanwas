@@ -25,7 +25,7 @@ function sortableList() {
                 dragged = true;
             },
             stop: function () {
-                $("#sortable grab").each(function () {
+                $("#sortable .grab").each(function () {
                     $.post("CurriculumServlet", { id: $(this).attr("name"), pageIndex: $(this).index() });
                 });
             }
