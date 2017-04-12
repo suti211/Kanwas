@@ -28,7 +28,7 @@ import user.User;
 public class PersistentStorage {
 
 	private static File xmlFile;
-	static private String filePath = "webapps/Kanwas/WEB-INF/classes/io/user-db.xml";
+	static private String filePath;
 	static PersistentStorage storage;
 
 	private static final int EMAIL = 0;
@@ -44,13 +44,16 @@ public class PersistentStorage {
 	public static PersistentStorage newInstance() {
 		if (storage == null) {
 			storage = new PersistentStorage();
-			
-			xmlFile = new File(filePath);
-			
-			//file creation here
-			fileCheck(xmlFile);
 		}
 		return storage;
+	}
+	
+	public static void setFilePath(String path){
+		filePath = path;	
+		xmlFile = new File(filePath);
+		
+		//file creation here
+		fileCheck(xmlFile);
 	}
 
 	public List<User> loadUsers() throws Exception {

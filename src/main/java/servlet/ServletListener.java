@@ -16,17 +16,18 @@ public class ServletListener implements ServletContextListener {
 	Data d = Data.newInstance();
 	PersistentStorage ps = PersistentStorage.newInstance();
 	List<User> users = d.getUserList();
-	List<User> loadedUsers = loadUsers();
+	List<User> loadedUsers;
 
 	@Override
 	public final void contextInitialized(final ServletContextEvent sce) {
+		ps.setFilePath(sce.getServletContext().getRealPath("WEB-INF/classes/io/user-db.xml"));
+		loadedUsers = loadUsers();
 		if (users.size() < 1) {
 			for(User u : loadedUsers ){
 				users.add(u);
 				System.out.println("user initialized: " + u);
 			}
 		}
-
 	}
 
 	@Override
