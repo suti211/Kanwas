@@ -61,8 +61,8 @@ public class CurriculumServlet extends HttpServlet {
 		System.out.println("jött valami szar");
 		List<Module> modules = data.getModules();
 		
-		int id = Integer.valueOf(request.getParameter("id"));
-		int pageIndex = Integer.valueOf(request.getParameter("pageIndex"));
+		int id = Integer.valueOf((String) request.getParameter("id"));
+		int pageIndex = Integer.valueOf((String) request.getParameter("pageIndex"));
 		
 		for (Module module : modules) {
 			if(module.getId() == id){
