@@ -38,7 +38,7 @@ public class CurriculumServlet extends HttpServlet {
 					modulesTitle.add(module.getTitle());
 					modulesTitle.add(module.getContent());
 			}
-			jsonString = new Gson().toJson(modulesTitle);
+			jsonString = new Gson().toJson(modules);
 		}
 		else{
 			System.out.println("data.getModules() is NULL!");
@@ -57,7 +57,7 @@ public class CurriculumServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		System.out.println("jött valami szar");
 	}
 
 }
