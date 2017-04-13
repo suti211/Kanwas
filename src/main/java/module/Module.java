@@ -14,20 +14,6 @@ public class Module {
 		this.published = published;
 		this.index = index;
 	}
-	
-	
-	
-
-	public Module(String title, String content, int id, boolean published) {
-		super();
-		this.title = title;
-		this.content = content;
-		this.id = id;
-		this.published = published;
-	}
-
-
-
 
 	public int getIndex() {
 		return index;
