@@ -6,6 +6,7 @@ body {
 	display: block;
 	font-family: 'Ubuntu', sans-serif;
 	color: #fff;
+
 }
 
 .error{
@@ -29,14 +30,13 @@ body {
 }
 
 .menu-container {
-	height:50px;
 	width:100%;
 	border-bottom: solid 1px rgba(255,255,255,0.5);
 	background-color:rgba(0,0,0,0.2);
 	margin: -10px 0px 50px 0px;
 	text-align: center;
 	font-family: 'Poppins', sans-serif;
-	position: fixed;
+	position:fixed;
 }
 
 .inner-menu-container{
@@ -90,6 +90,7 @@ body {
 	box-shadow: 0px 0px 15px rgba(0,0,0,0.5);
 	background-color:rgba(0,0,0,0.5);
 	border-radius: 5px;
+
 }
 
 .login-title {
@@ -103,7 +104,7 @@ body {
 	padding-top: 50px;
 }
 
-.login-container {	
+.login-container {
 	margin:20px;
 	vertical-align: middle;
 	text-align: center;
@@ -136,7 +137,7 @@ body {
 	margin:auto;
 	width: 50%;
 	font-weight: 800;
-	background-color: rgba(0,0,0,0);	
+	background-color: rgba(0,0,0,0);
 	border: 1px solid #fff;
 	text-transform: uppercase;
 	color: #fff;
@@ -147,31 +148,63 @@ body {
 	color: #000;
 	box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
 }
-.assignment-input{
-	margin: 20px;
-	width: 95%;
-	padding: 10px;
-	border-radius: 5px;
 
+
+/*########################################################*/
+
+.list-container {
+	padding: 0px !important;
+	width: 50% !important;
 }
 
-.page-item {
-	width: 70%;
-}
-
-.points {
+li {
+	counter-increment: section;
+	border-bottom: 1px solid rgba(255,255,255,0.5);
+	margin-top: 0px !important;
 	margin: 0px;
-	width: 50px;
-	border-radius: 5px;
+	padding: 5px;
+	text-transform: uppercase;
+	font-size: 18px;
+	cursor: pointer;
 }
 
-.submit-button {
+li:before {
+		content: counter(section) ". ";
+		margin-left: 5px;
+}
+
+.active .list-content {
+	display: block;
+}
+
+ul {
+	list-style: none;
+	padding: 0px !important;
+	margin: 0px !important;
+}
+
+.list-content {
+	animation-name: drop;
+  animation-duration: 0.5s;
+	animation-timing-function: ease-in;
+	animation-fill-mode: forwards;
+	color: rgba(0,0,0,0);
+
+	display: none;
+	margin: 5px;
+	font-size: 16px;
+	text-transform: none !important;
+}
+
+@keyframes drop {
+		0%	{height: 0%;}
+		100% {height: auto; color: #fff;}
+}
+
+.grab {
 	float: right;
-	width: 100px;
-	background-color: #3fc380;
-	color: #dadfe1;
-	border-radius: 3px;
-	margin-bottom: 20px;
-	color: #dadfe1;
-	text-shadow: 1px 1px #95a5a6;
+	font-size: 24px;
+	margin-right: 10px;
+	margin-top: -2px;
+	cursor: move;
 }

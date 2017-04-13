@@ -2,24 +2,28 @@ package data;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-
+import module.Module;
 import user.Mentor;
 import user.Student;
 import user.User;
+import module.TextPage;
 
 public class Data {
 
 	private Map<User, String> sessions = new HashMap<>();
 	private ArrayList<User> users = new ArrayList<User>();
 	private User currentUser;
+	private List<Module> modules;
+	private GypsyModules dummyList;
 	
 	private static Data singleton = new Data( );	
-	private Data() { }
+	private Data() {
+		dummyList = new GypsyModules();
+		modules = dummyList.getModules();
+	}
 
 	public static Data newInstance( ) {
 		return singleton;
@@ -59,6 +63,14 @@ public class Data {
 		}
 	}
 	
+	public List<Module> getModules() {
+		return modules;
+	}
+
+	public void setModules(List<Module> modules) {
+		this.modules = modules;
+	}
+
 	public User getUserbyName(String name){
 		for (User user : users) {
 			if(user.getFullName().equals(name))
