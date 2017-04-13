@@ -208,3 +208,32 @@ ul {
 	margin-top: -2px;
 	cursor: move;
 }
+
+.assignment-input{
+	margin: 20px;
+	width: 95%;
+	padding: 10px;
+	border-radius: 5px;
+
+}
+
+.page-item {
+	width: 70%;
+}
+
+.points {
+	margin: 0px;
+	width: 50px;
+	border-radius: 5px;
+}
+
+.submit-button {
+	float: right;
+	width: 100px;
+	background-color: #3fc380;
+	color: #dadfe1;
+	border-radius: 3px;
+	margin-bottom: 20px;
+	color: #dadfe1;
+	text-shadow: 1px 1px #95a5a6;
+}

@@ -49,6 +49,8 @@ table {
 			<a href="./register"><div class="menu-item"
 					style="border: 1px solid #000; padding: 0px 5px 0px 5px">Sign
 					Up</div></a>
+			<a href="./assignment.jsp" class="menu-item" style="color: black">New Assignment</a>
+			<a href="./textpage.jsp" class="menu-item" style="color: black">New Text</a>
 		</div>
 
 		<a href="${extraurl}"><span class="extra-menu-item">${extramenu}</span></a>
@@ -60,7 +62,7 @@ table {
 
 	<div class="main-window list-container">
 		<ul id="sortable" class="generatable">
-			<!-- IDE JÖN A LISTA -->
+			<!-- IDE Jï¿½N A LISTA -->
 			
 		</ul>
 	</div>
