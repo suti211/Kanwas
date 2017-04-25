@@ -43,13 +43,20 @@ public class Module {
 		return published;
 	}
 
+
+
 	public void setPublished(boolean published) {
 		this.published = published;
 	}
 
 	@Override
 	public String toString() {
-		return "Module [title=" + title + ", id=" + id + "]";
+		return "Module{" +
+				"title='" + title + '\'' +
+				", content='" + content + '\'' +
+				", id=" + id +
+				", published=" + published +
+				", index=" + index +
+				'}';
 	}
-	
 }
