@@ -82,12 +82,6 @@ public class LoginServlet extends HttpServlet {
 		HttpSession session = request.getSession(true);
 		session.setAttribute("user", getCurrentUser());
 		response.sendRedirect("./profile?first=yes");
-		
-		
-		/*
-		 * Change the page if any error happened
-		 */
-		doGet(request, response);
 	}
 
 	private User getCurrentUser() {
