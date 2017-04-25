@@ -52,9 +52,10 @@ table {
 
 
 	<div class="main-window page-item">
+		<form action="AddAssignmentPageServlet" method="post" >
 		
 			<span style="font-size: 24px"> <input type="text"
-				class="assignment-input" id="title" placeholder="Type in title...">
+				class="assignment-input" id="title" name="title" placeholder="Type in title...">
 			</span>
 			<div
 				style="padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, 0.5)">
@@ -65,7 +66,7 @@ table {
 					style="margin-top: 10px" cols="50" rows="10"
 					placeholder="Type your question..."></textarea>
 				<div style="font-size: 15px; margin-left: 20px; width: 15%">
-					Points: <input type="number" class="points" id="points">
+					Points: <input type="number" class="points" id="points" name="points">
 				</div>
 
 				<div>
@@ -78,6 +79,7 @@ table {
 					</button>
 				</div>
 			</div>
+		</form>
 
 	</div>
 
