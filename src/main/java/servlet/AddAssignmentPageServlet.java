@@ -47,7 +47,7 @@ public class AddAssignmentPageServlet extends HttpServlet {
 			Class.forName(driver).newInstance();
 			System.out.println("csatlakozás...");
 
-			conn = DriverManager.getConnection(url+dbName+unicode, "root", "ezer990");
+			conn = DriverManager.getConnection(url+dbName+unicode, "root", "admin");
 
 			System.out.println("csatlakozás ok");
 			PreparedStatement ps = (PreparedStatement) conn.prepareStatement("INSERT INTO `kanwas`.`assignments`(`Title`,`Content`,`MaxScore`,`Published`) VALUES(?,?,?,?)");
