@@ -75,6 +75,7 @@ public class UserProfileServlet extends HttpServlet {
 		
 		
 		request.setAttribute("tableContent", tableContent);
+		request.setAttribute("fullname", currentUser.getFullName());
 		request.getRequestDispatcher("/profile.jsp").forward(request, response);
 	}
 
