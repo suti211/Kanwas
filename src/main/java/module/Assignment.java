@@ -9,14 +9,14 @@ public class Assignment extends Module {
 	private int maxScore;
 	private List<Student> answeredStudents;
 	
-	public Assignment(String title, String content, int id, int index, String answer, int maxScore, boolean published, List<Student> answeredUsers) {
+	public Assignment(String title, String content, int id, int index, String answer, int maxScore, int published, List<Student> answeredUsers) {
 		super(title, content, id, index, published);
 		this.answer = answer;
 		this.maxScore = maxScore;
 		this.answeredStudents = answeredUsers;
 		this.published = published;
 	}
-	public Assignment(String title, String content, int id, int maxScore, boolean published)
+	public Assignment(String title, String content, int id, int maxScore, int published)
 	{
 		super(title, content, id, maxScore, published);
 		this.maxScore = maxScore;

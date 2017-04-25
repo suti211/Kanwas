@@ -38,7 +38,7 @@ public class CurriculumServlet extends HttpServlet {
 
 		if (modules.size() > 0 ) {
 			for (Module module : modules) {
-				if(module.isPublished())
+				if(module.isPublished() == 1)
 					modulesTitle.add(module.getTitle());
 					modulesTitle.add(module.getContent());
 			}

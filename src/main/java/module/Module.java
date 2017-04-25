@@ -4,10 +4,10 @@ public class Module {
 	protected String title;
 	protected String content;
 	protected int id;
-	protected boolean published;
+	protected int published;
 	protected int index;
 
-	public Module(String title, String content, int id, int index, boolean published) {
+	public Module(String title, String content, int id, int index, int published) {
 		this.title = title;
 		this.content = content;
 		this.id = id;
@@ -39,13 +39,13 @@ public class Module {
 		this.id = id;
 	}
 
-	public boolean isPublished() {
+	public int isPublished() {
 		return published;
 	}
 
 
 
-	public void setPublished(boolean published) {
+	public void setPublished(int published) {
 		this.published = published;
 	}
 
