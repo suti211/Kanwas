@@ -27,7 +27,7 @@ public class ConnectionPool {
 	public Connection createConnection(){
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/tweetcool", "root", "admin");
+			Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/kanwas", "root", "admin");
 			connections.add(connection);
 			return connection;
 		} catch (ClassNotFoundException | SQLException e) {
