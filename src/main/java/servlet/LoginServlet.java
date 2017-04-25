@@ -3,23 +3,28 @@ package servlet;
 import static data.Encrypt.encrypt;
 
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import data.Data;
+import io.SQLConnector;
 import user.User;
 
-/**
- * Created by tamasferenc on 2017.03.29..
- */
 public class LoginServlet extends HttpServlet
 {
-    String email;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private SQLConnector sqlConnector = new SQLConnector();
+	
+	String email;
     String pass;
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         email = request.getParameter("email");
@@ -27,7 +32,6 @@ public class LoginServlet extends HttpServlet
         Data users = Data.newInstance();
 		
         //Redirect user if already logged in
-		// User currentUser = users.getCurrentUser(users.getCookie(request));
         User currentUser = (User) request.getSession(false).getAttribute("user");
 		if (currentUser != null)
 		{
@@ -60,18 +64,31 @@ public class LoginServlet extends HttpServlet
         		}
             	
             	
+            	/*
+            	 * SQL Get password
+            	 */
+            	ResultSet rs = sqlConnector.getData("SELECT password FROM users WHERE email = '" + email + "'");
+            	String passwordFromDB = "";
+    			
+            	try {
+            		
+            		passwordFromDB = null;
+            		
+					if( rs.next() )
+					{
+						passwordFromDB = rs.getString(1);
+					}
+				} catch (SQLException e) {
+					System.out.println("Error @ LoginServlet: Get password from DB");
+					e.printStackTrace();
+				}
+            	
             	//Password incorrect
-                if(user.getPassword().equals(pass))
+                if(passwordFromDB.equals(pass))
                 {
                     //users.setCurrentUser(user);
                     request.setAttribute("message", "<div class=\"success\"> SUCCESS: You logged in, nigga.  </div>");
-                    System.out.println("Succesful authentication: " + email);
                     
-//                    Cookie cookie = new Cookie("sessionID", users.getSessions().get(user));
-//                    cookie.setMaxAge(3*(60 * 60));
-//                    //cookie.setDomain("/");
-//                    response.addCookie(cookie);
-//                    
                     HttpSession session = request.getSession(true);
                     session.setAttribute("user", user);
                     
