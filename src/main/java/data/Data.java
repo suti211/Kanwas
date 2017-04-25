@@ -82,12 +82,43 @@ public class Data {
 		return null;
 	}
 
-	public User getUserbyEmail(String emailAddress) {
-		for (User user : users) {
-			if (user.getEmailAddress().equals(emailAddress))
+	private User createUserByID(String id) {
+		ResultSet rs = sqlConnector.getData("SELECT * FROM Users WHERE id = '" + id + "'");
+		User user = null;
+		try {
+
+			if (rs.next()) {
+
+				if (rs.getString(6).equals("student")) {
+					user = new Student(rs.getString(4), rs.getString(5), rs.getString(2), rs.getString(6),
+							rs.getString(3));
+				} else {
+					user = new Mentor(rs.getString(4), rs.getString(5), rs.getString(2), rs.getString(6),
+							rs.getString(3));
+				}
+
 				return user;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		return null;
+		return user;
+	}
+
+	public User getUserByEmail(String emailAddress) {
+		ResultSet rs = sqlConnector.getData("SELECT id FROM USers WHERE Email = '" + emailAddress + "'");
+		User user = null;
+
+		try {
+			if (rs.next()) {
+				user = createUserByID(rs.getString(1));
+			}
+		} catch (SQLException e) {
+			System.out.println("Error @ getUserByEmail: " + e.getMessage());
+			e.printStackTrace();
+		}
+		return user;
 	}
 
 	public boolean checkUserExist(String email) {
