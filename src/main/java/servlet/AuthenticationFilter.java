@@ -30,9 +30,9 @@ public class AuthenticationFilter implements Filter {
 
 		String path = ((HttpServletRequest) req).getRequestURI();
 
-		if (path.startsWith("/Kanwas/login") || path.startsWith("/Kanwas/index")) {
+		if (path.startsWith("/Kanwas/login") || path.startsWith("/Kanwas/index") || path.startsWith("/Kanwas/register")) {
 			chain.doFilter(request, response);
-			System.out.println("Login oldalon nincs szûrés!");
+			System.out.println("Login/index/register oldalon nincs szûrés!");
 		} else {
 			if (session == null) {
 				res.sendRedirect("./login");

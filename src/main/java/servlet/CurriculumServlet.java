@@ -20,7 +20,6 @@ import user.User;
 
 public class CurriculumServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private UserLoginManager LoginManager = UserLoginManager.getInstance();
 	private Data data = Data.newInstance();
 
 	public CurriculumServlet() {
