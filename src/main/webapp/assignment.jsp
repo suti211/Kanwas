@@ -52,7 +52,7 @@ table {
 
 
 	<div class="main-window page-item">
-		<form action="AddAssignmentPageServlet" method="post" >
+
 		
 			<span style="font-size: 24px"> <input type="text"
 				class="assignment-input" id="title" name="title" placeholder="Type in title...">
@@ -72,14 +72,13 @@ table {
 				<div>
 					<div
 						style="float: right; font-size: 15px; width: 125px; display: inline">
-						<input type="radio" name="status" value="Unpublished" checked>Unpublished
-						<input type="radio" name="status" value="Published">Published
+						<input type="radio" name="status" value="false" checked>Unpublished
+						<input type="radio" name="status" value="true">Published
 					</div>
 					<button id="submit-assignment" class="button submit-button">Submit
 					</button>
 				</div>
 			</div>
-		</form>
 
 	</div>
 
