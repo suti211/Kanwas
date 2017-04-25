@@ -3,6 +3,8 @@ package servlet;
 import static data.Encrypt.encrypt;
 
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -11,26 +13,22 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import data.Data;
+import io.SQLConnector;
 import user.User;
 
-/**
- * Created by tamasferenc on 2017.03.29..
- */
 public class RegisterServlet extends HttpServlet {
 
-    /**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
+	private SQLConnector sqlConnector = new SQLConnector();
 	String firstName = "";
-    String lastName = "";
-    String email = "";
-    String role = "";
-    String fullName = "";
-    String pass = "";
-    String pass2 = "";
-    
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	String lastName = "";
+	String email = "";
+	String role = "";
+	String fullName = "";
+	String pass = "";
+	String pass2 = "";
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         firstName = request.getParameter("first-name");
         lastName = request.getParameter("last-name");
         fullName = firstName + " " + lastName;
@@ -84,50 +82,50 @@ public class RegisterServlet extends HttpServlet {
         	return;
         }     
         
-        System.out.println("email: " + email);
-        
-        
-        boolean alreadyExist = false;
-        System.out.println(data.getUserList().size());
-
-        for(User u: data.getUserList()){
-        	if(u.getEmailAddress().equals(email)){
-        		alreadyExist = true;
-        	}
-        }
-        
-        if(!alreadyExist){
-        	data.addUser(role, firstName, lastName, email, pass);
+        if(!data.checkUserExist(email)){
+        	//data.addUser(role, firstName, lastName, email, pass);
+        	
+        	/*
+        	 * SQL : START
+        	 */
+        	sqlConnector.sendQuery("INSERT INTO users VALUES ('0', '" + email + 
+											        			"', '" + pass + 
+											        			"', '" + firstName + 
+											        			"', '"+ lastName + 
+											        			"', '" + role + 
+											        			"');");
+        	
+        	/*
+        	 * SQL : END
+        	 */
+        	
         	request.setAttribute("message", "<div class=\"success\"> SUCCESS: You succesfully created an account.  </div>");
         } else {
         	request.setAttribute("message", "<div class=\"error\"> ERROR: E-mail address already registered  </div>");
         }
         
         request.getRequestDispatcher("/register.jsp").forward(request, response);
-        //doGet(request, response);
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-    	Data d = Data.newInstance();
-    	User currentUser = null;
-    	HttpSession session = request.getSession(false);
-    	
-    	if(session != null){
-    		currentUser = (User) request.getSession(false).getAttribute("user");
-    	}
-    	
-		if (currentUser == null)
-		{
+		User currentUser = null;
+		HttpSession session = request.getSession(false);
+
+		if (session != null) {
+			currentUser = (User) request.getSession(false).getAttribute("user");
+		}
+
+		if (currentUser == null) {
 			request.setAttribute("extramenu", "Click here to log in.");
 			request.setAttribute("extraurl", "./login");
-		}else{
+		} else {
 			request.setAttribute("extramenu", currentUser.getFirstName());
 			request.setAttribute("extraurl", "./profile");
 		}
 		request.getRequestDispatcher("/register.jsp").forward(request, response);
-    	
-    }
-    
+
+	}
 
 }
