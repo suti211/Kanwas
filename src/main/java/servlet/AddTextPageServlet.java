@@ -27,6 +27,7 @@ public class AddTextPageServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
+		System.out.println("inbound POST request(AddTextPageServlet)");
 		HttpSession session = request.getSession(false);
 		User user = (User) session.getAttribute("user");
 		
@@ -46,9 +47,17 @@ public class AddTextPageServlet extends HttpServlet {
 			
 			SQLConnector sqlConnector = new SQLConnector();
 			String query = "";
-			
+			query = "INSERT INTO modules (Title, Content, Type, Published) "
+				+ "VALUES(" 
+					+ textpage.getTitle() + ","
+					+ textpage.getContent() 
+					+ ", text" 
+					+ textpage.isPublished();	
 			
 			sqlConnector.sendQuery(query);
+			sqlConnector.sendQuery("SET SQL_SAFE_UPDATES = 0");
+			sqlConnector.sendQuery("UPDATE modules SET IndexID = id WHERE IndexID is null and id is not null");	
+			
 		}
 		else{
 			System.out.println("Student tried to AddNewTextPage!");
