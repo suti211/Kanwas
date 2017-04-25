@@ -11,7 +11,7 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="./js/list.js"></script>
 <link rel="stylesheet" href="./font-awesome/css/font-awesome.min.css">
-<title>Curricolum - Kanwas</title>
+<title>Curriculum - Kanwas</title>
 </head>
 
 <style>
