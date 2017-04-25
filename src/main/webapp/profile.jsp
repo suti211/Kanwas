@@ -27,7 +27,7 @@
 			<div class="inner-menu-container">
 				<a href="./user"><div class="menu-item">Members</div></a>
 				<a href="./profile"><div class="menu-item">Profile</div></a>
-				<a href="./list.jsp"class="menu-item" style="color: black">Curriculum</a>/div>
+				<a href="./list.jsp"><div class="menu-item" style="color: black">Curriculum</div></a>
 				<a href="./register"><div class="menu-item" style="border:1px solid #000; padding: 0px 5px 0px 5px">Sign Up</div></a>
 			</div>
 			

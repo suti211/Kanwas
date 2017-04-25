@@ -27,7 +27,7 @@ public class UserListServlet extends HttpServlet {
     	HttpSession session = request.getSession(false);
     	
     	if(session != null){
-    		currentUser = (User) request.getSession(false).getAttribute("user");
+    		currentUser = (User) session.getAttribute("user");
     	}
     	
 		if (currentUser == null)
@@ -69,7 +69,9 @@ public class UserListServlet extends HttpServlet {
 						"</table>";
 		
 		//TODO: data.getCurrentUser().getFullName()
-		request.setAttribute("fullname", "Dezső");
+		
+		
+		request.setAttribute("fullname", currentUser.getFullName());
 		request.setAttribute("tableContent", tableContent);
 		System.out.println("Table content generated and sent!");
 		

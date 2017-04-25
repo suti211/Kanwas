@@ -11,7 +11,7 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="./js/list.js"></script>
 <link rel="stylesheet" href="./font-awesome/css/font-awesome.min.css">
-<title>Curricolum - Kanwas</title>
+<title>Curriculum - Kanwas</title>
 </head>
 
 <style>
@@ -47,7 +47,7 @@ table {
 				href="./profile"><div class="menu-item">Profile</div></a>
 			<div class="menu-item">Curriculum</div>
 			<a href="./assignment.jsp" class="menu-item" style="color: black">New Assignment</a>
-			<a href="./textpage.jsp" class="menu-item" style="color: black">New Text</a>
+			<a href="./textpage.jsp" class="menu-item" style="color: black">New TextPage</a>
 			<a href="./register"><div class="menu-item"
 									  style="border: 1px solid #000; padding: 0px 5px 0px 5px">Sign
 				Up</div></a>

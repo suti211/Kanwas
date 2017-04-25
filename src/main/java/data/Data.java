@@ -33,17 +33,6 @@ public class Data {
 		return users;
 	}
 	
-	public User getCurrentUser(String sessionID) {
-		for (Map.Entry<User, String> sess : sessions.entrySet())
-		{
-			if (sessionID.equals(sess.getValue()))
-			{
-				return sess.getKey();
-			}
-		}
-		return null;
-	}
-
 	public void setCurrentUser(User currentUser) {
 		this.currentUser = currentUser;
 	}

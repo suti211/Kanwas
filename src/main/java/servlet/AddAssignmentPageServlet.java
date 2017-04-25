@@ -11,7 +11,6 @@ import javax.servlet.http.HttpSession;
 
 public class AddAssignmentPageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private UserLoginManager LoginManager = UserLoginManager.getInstance();
        
     public AddAssignmentPageServlet() {
         super();

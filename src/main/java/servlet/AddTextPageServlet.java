@@ -15,7 +15,6 @@ import module.TextPage;
 
 public class AddTextPageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private UserLoginManager LoginManager = UserLoginManager.getInstance();
 
     public AddTextPageServlet() {
         super();
