@@ -67,11 +67,6 @@ public class LoginServlet extends HttpServlet
                     request.setAttribute("message", "<div class=\"success\"> SUCCESS: You logged in, nigga.  </div>");
                     System.out.println("Succesful authentication: " + email);
                     
-//                    Cookie cookie = new Cookie("sessionID", users.getSessions().get(user));
-//                    cookie.setMaxAge(3*(60 * 60));
-//                    //cookie.setDomain("/");
-//                    response.addCookie(cookie);
-//                    
                     HttpSession session = request.getSession(true);
                     session.setAttribute("user", user);
                     
