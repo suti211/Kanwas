@@ -47,6 +47,8 @@ public class LoginServlet extends HttpServlet {
 		 */
 		if (email.equals("") || pass.equals("")) {
 			request.setAttribute("message", "<div class=\"error\"> ERROR: Requested field is empty.  </div>");
+			doGet(request, response);
+			return;
 		}
 
 		/*
