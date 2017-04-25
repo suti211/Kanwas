@@ -36,7 +36,11 @@ public class CurriculumServlet extends HttpServlet {
 			System.out.println("No session found!");
 			return;
 		}
-		User user = (User) session.getAttribute("user");		
+		User user = (User) session.getAttribute("user");
+		if(user == null){
+			System.out.println("No user found in the current Session!");
+			return;
+		}
 		
 		List<Module> modules = data.getModules();
 		String jsonString = null;
