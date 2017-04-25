@@ -11,16 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import data.Data;
+import io.SQLConnector;
 import user.User;
 
-/**
- * Created by tamasferenc on 2017.03.29..
- */
 public class RegisterServlet extends HttpServlet {
 
-    /**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	String firstName = "";
     String lastName = "";
@@ -97,7 +92,18 @@ public class RegisterServlet extends HttpServlet {
         }
         
         if(!alreadyExist){
-        	data.addUser(role, firstName, lastName, email, pass);
+        	//data.addUser(role, firstName, lastName, email, pass);
+        	
+        	/*
+        	 * SQL : START
+        	 */
+        	SQLConnector sqlConnector = new SQLConnector();
+        	sqlConnector.sendQuery("INSERT INTO users VALUES ('0', '" + email + "', '" + pass + "', '" + firstName + "', '"+ lastName +"', '" + role + "');");
+        	
+        	/*
+        	 * SQL : END
+        	 */
+        	
         	request.setAttribute("message", "<div class=\"success\"> SUCCESS: You succesfully created an account.  </div>");
         } else {
         	request.setAttribute("message", "<div class=\"error\"> ERROR: E-mail address already registered  </div>");
@@ -109,7 +115,6 @@ public class RegisterServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    	Data d = Data.newInstance();
     	User currentUser = null;
     	HttpSession session = request.getSession(false);
     	
