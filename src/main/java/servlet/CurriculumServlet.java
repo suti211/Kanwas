@@ -82,6 +82,17 @@ public class CurriculumServlet extends HttpServlet {
 		
 		System.out.println("inbound POST request(CurriculumServlet)");
 		
+		HttpSession session = request.getSession(false);
+		if(session == null){
+			System.out.println("No session found!");
+			return;
+		}
+		User user = (User) session.getAttribute("user");
+		if(user.getRole().equals("student")){
+			System.out.println("Student tried to modify the module's order!");
+			return;
+		}
+		
 		List<Module> modules = data.getModules();
 		
 		int id = Integer.valueOf((String)request.getParameter("id"));
