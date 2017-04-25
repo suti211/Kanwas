@@ -72,8 +72,8 @@ table {
 				<div>
 					<div
 						style="float: right; font-size: 15px; width: 125px; display: inline">
-						<input type="radio" name="status" value="false" checked>Unpublished
-						<input type="radio" name="status" value="true">Published
+						<input type="radio" name="status" value="0" checked>Unpublished
+						<input type="radio" name="status" value="1">Published
 					</div>
 					<button id="submit-assignment" class="button submit-button">Submit
 					</button>
