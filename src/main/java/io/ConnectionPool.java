@@ -27,7 +27,8 @@ public class ConnectionPool {
 	public Connection createConnection(){
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/tweetcool", "root", "admin");
+			String unicode = "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+			Connection connection = DriverManager.getConnection("jdbc:mysql://192.168.150.32/kanwas"+unicode, "ferenc", "ferenc");
 			connections.add(connection);
 			return connection;
 		} catch (ClassNotFoundException | SQLException e) {
