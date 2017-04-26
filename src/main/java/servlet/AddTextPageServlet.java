@@ -6,11 +6,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import io.SQLConnector;
 import module.TextPage;
+import user.User;
 
 
 public class AddTextPageServlet extends HttpServlet {
@@ -24,20 +27,40 @@ public class AddTextPageServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
-		String jsonString = null;
+		System.out.println("inbound POST request(AddTextPageServlet)");
+		HttpSession session = request.getSession(false);
+		User user = (User) session.getAttribute("user");
 		
-		if(request.getParameter("json") == null){
-			System.out.println("'json' parameter is null!");
-			return;
+		if(user.getRole().equals("mentor")){
+			String jsonString = null;
+			
+			if(request.getParameter("json") == null){
+				System.out.println("'json' parameter is null!");
+				return;
+			}
+					
+			jsonString = request.getParameter("json");
+			System.out.println("JSON String: " + jsonString);
+			
+			Gson gson = new GsonBuilder().setPrettyPrinting().create();
+			TextPage textpage = gson.fromJson(jsonString, TextPage.class);
+			
+			SQLConnector sqlConnector = new SQLConnector();
+			String query = "";
+			query = "INSERT INTO modules (Title, Content, Type, Published) "
+				+ "VALUES(" 
+					+ textpage.getTitle() + ","
+					+ textpage.getContent() 
+					+ ", text" 
+					+ textpage.isPublished();	
+			
+			sqlConnector.sendQuery(query);
+			sqlConnector.sendQuery("SET SQL_SAFE_UPDATES = 0");
+			sqlConnector.sendQuery("UPDATE modules SET IndexID = id WHERE IndexID is null and id is not null");	
+			
 		}
-				
-		jsonString = request.getParameter("json");
-		System.out.println("JSON String: " + jsonString);
-		
-		Gson gson = new GsonBuilder().setPrettyPrinting().create();
-		TextPage textpage = gson.fromJson(jsonString, TextPage.class);
-		
-		
+		else{
+			System.out.println("Student tried to AddNewTextPage!");
+		}		
 	}
-
 }
