@@ -16,7 +16,6 @@ import user.User;
 public class Data {
 
 	private Map<User, String> sessions = new HashMap<>();
-	private ArrayList<User> users = new ArrayList<User>();
 	private User currentUser;
 	private List<Module> modules;
 	private GypsyModules dummyList;
@@ -34,27 +33,25 @@ public class Data {
 		return singleton;
 	}
 
-	public ArrayList<User> getUserList() {
+	public List<User> getUserList() {
+		ResultSet rs = sqlConnector.getData("SELECT id FROM Users");
+		
+		List<User> users = new ArrayList<>();
+		try {
+			while ( rs.next() )
+			{
+				users.add(createUserByID(rs.getString(1)));
+			}
+		} catch (SQLException e) {
+			System.out.println("Error @ getUSerList: " + e.getMessage());
+			e.printStackTrace();
+		}
+		
 		return users;
 	}
 	
 	public void setCurrentUser(User currentUser) {
 		this.currentUser = currentUser;
-	}
-
-	public void addUser(String userType, String firstName, String lastName, String emailAddress) {
-		addUser(userType, firstName, lastName, emailAddress, null);
-	}
-
-	public void addUser(String userType, String firstName, String lastName, String emailAddress, String password) {
-		switch (userType) {
-		case "student":
-			users.add(new Student(firstName, lastName, emailAddress, userType, password));
-			break;
-		case "mentor":
-			users.add(new Mentor(firstName, lastName, emailAddress, userType, password));
-			break;
-		}
 	}
 
 	public List<Module> getModules() {
@@ -65,13 +62,6 @@ public class Data {
 		this.modules = modules;
 	}
 
-	public User getUserbyName(String name) {
-		for (User user : users) {
-			if (user.getFullName().equals(name))
-				return user;
-		}
-		return null;
-	}
 
 	private User createUserByID(String id) {
 		ResultSet rs = sqlConnector.getData("SELECT * FROM Users WHERE id = '" + id + "'");
