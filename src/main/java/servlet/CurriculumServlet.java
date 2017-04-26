@@ -100,6 +100,7 @@ public class CurriculumServlet extends HttpServlet {
 
 		System.out.println("inbound POST request(CurriculumServlet)");
 		modul = getModulesFromDB();
+		SQLConnector sqlc = new SQLConnector();
 
 		HttpSession session = request.getSession(false);
 		if (session == null) {
@@ -114,11 +115,10 @@ public class CurriculumServlet extends HttpServlet {
 
 		int id = Integer.valueOf((String) request.getParameter("id"));
 		int pageIndex = Integer.valueOf((String) request.getParameter("pageIndex"));
-		System.out.println("id : " + id);
-		System.out.println("pageIndex : " + pageIndex);
 
 		for (Module module : modul) {
 			if (module.getId() == id) {
+				sqlc.sendQuery("UPDATE kanwas.modules SET indexID =" + pageIndex + " WHERE id = " + id);
 				module.setIndex(pageIndex);
 			}
 		}
