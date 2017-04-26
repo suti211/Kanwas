@@ -3,6 +3,8 @@
     <link rel="stylesheet" type="text/css" href="./stylesheet/style.css">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+    <script src="./js/jquery-3.2.1.min.js"></script>
+	<script src="./js/modules.js"></script>
     <title>Text page</title>
 </head>
 
@@ -43,14 +45,14 @@
         </div>
 
         <div style="font-size: 24px; margin-top: 10px">
-            <textarea class="assignment-input" name="submit-text" id="question" style="margin-top: 10px" cols="50" rows="10" placeholder="Type your text..."></textarea>
+            <textarea class="assignment-input" name="submit-text" id="text" style="margin-top: 10px" cols="50" rows="10" placeholder="Type your text..."></textarea>
 
             <div>
                 <div style="float: right; font-size: 15px; width: 125px; display: inline">
-                    <input type="radio" name="status" value="Unpublished" checked>Unpublished
-                    <input type="radio" name="status" value="Published">Published
+                    <input type="radio" name="status" value="0" checked>Unpublished
+                    <input type="radio" name="status" value="1">Published
                 </div>
-                <button id="submit-assignment"  class="button submit-button">Submit
+                <button id="submit-textpage"  class="button submit-button">Submit
                 </button>
             </div>
         </div>

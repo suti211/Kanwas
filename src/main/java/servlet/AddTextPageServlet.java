@@ -46,15 +46,14 @@ public class AddTextPageServlet extends HttpServlet {
 			TextPage textpage = gson.fromJson(jsonString, TextPage.class);
 			
 			SQLConnector sqlConnector = new SQLConnector();
-			String query = "";
-			query = "INSERT INTO modules (Title, Content, Type, Published) "
-				+ "VALUES(" 
-					+ textpage.getTitle() + ","
-					+ textpage.getContent() 
-					+ ", text" 
-					+ textpage.isPublished();	
+			sqlConnector.sendQuery("INSERT INTO `kanwas`.`modules`(`Title`,`Content`,`Type`,`MaxScore`,`Published`) "
+					+ "VALUES(" +"'"
+					+ textpage.getTitle()+"'"+","+"'"
+					+ textpage.getContent()+"'"+","+"'"
+					+"text"+"'"+","+"'"
+					+"0"+"'"+","+ "'"
+					+textpage.isPublished()+"'"+")");
 			
-			sqlConnector.sendQuery(query);
 			sqlConnector.sendQuery("SET SQL_SAFE_UPDATES = 0");
 			sqlConnector.sendQuery("UPDATE modules SET IndexID = id WHERE IndexID is null and id is not null");	
 			
