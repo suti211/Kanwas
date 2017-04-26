@@ -12,7 +12,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import io.SQLConnector;
-import module.TextPage;
+import module.Module;
 import user.User;
 
 
@@ -43,7 +43,7 @@ public class AddTextPageServlet extends HttpServlet {
 			System.out.println("JSON String: " + jsonString);
 			
 			Gson gson = new GsonBuilder().setPrettyPrinting().create();
-			TextPage textpage = gson.fromJson(jsonString, TextPage.class);
+			Module textpage = gson.fromJson(jsonString, Module.class);
 			
 			SQLConnector sqlConnector = new SQLConnector();
 			sqlConnector.sendQuery("INSERT INTO `kanwas`.`modules`(`Title`,`Content`,`Type`,`MaxScore`,`Published`) "

@@ -3,7 +3,6 @@ package servlet;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import io.SQLConnector;
-import module.Assignment;
 import module.Module;
 
 import java.io.IOException;
@@ -36,7 +35,7 @@ public class AddAssignmentPageServlet extends HttpServlet {
 
 			String jsonString = request.getParameter("json");
 			System.out.println(jsonString);
-			Assignment m = new Gson().fromJson(jsonString, Assignment.class);
+			Module m = new Gson().fromJson(jsonString, Module.class);
 			System.out.println(m);
 
 			System.out.println("csatlakozás...");
