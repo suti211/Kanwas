@@ -1,30 +1,11 @@
 package user;
 
-import java.io.IOException;
-
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerException;
-
-import org.xml.sax.SAXException;
-
-import io.PersistentStorage;
-
 public abstract class User {
 	private String firstName;
 	private String lastName;
 	private String emailAddress;	
 	private String password;	
 	private String role;
-	
-	public User(String firstName, String lastName, String emailAddress, String role) {
-		super();
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.emailAddress = emailAddress;
-		this.role = role;
-		
-		addToLocalDB(this);
-	}
 	
 	public User(String firstName, String lastName, String emailAddress, String role, String password) {
 		super();
@@ -34,16 +15,7 @@ public abstract class User {
 		this.role = role;
 		this.password = password;
 		
-		addToLocalDB(this);
-	}
-	
-	public User(String firstName, String lastName, String emailAddress, String role, String password, boolean saveFlag) {
-		super();
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.emailAddress = emailAddress;
-		this.role = role;
-		this.password = password;
+		// swap this to sql update : addToLocalDB(this);
 	}
 	
 	public void changeRole(){
@@ -52,7 +24,7 @@ public abstract class User {
 		else
 			role = "student";
 		
-		modifyToLocalDB(this);
+		// swap this to sql update : modifyToLocalDB(this);
 	}
 	
 	public String getPassword() {
@@ -79,13 +51,13 @@ public abstract class User {
 	public void setFirstName(String name) {
 		this.firstName = name;
 
-		modifyToLocalDB(this);
+		// swap this to sql update : modifyToLocalDB(this);
 	}
 	
 	public void setLastName(String name) {
 		this.lastName = name;
 
-		modifyToLocalDB(this);
+		// swap this to sql update : modifyToLocalDB(this);
 	}
 
 	public String getEmailAddress() {
@@ -97,24 +69,5 @@ public abstract class User {
 		return "User [name=" + getFullName() + ", emailAddress=" + emailAddress + ", password=" + password + ", role=" + role
 				+ "]";
 	}
-	
-	private void addToLocalDB(User user){
-		PersistentStorage ps = PersistentStorage.newInstance();
-		try {
-			ps.addUser(user);			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-	private void modifyToLocalDB(User user){
-		PersistentStorage ps = PersistentStorage.newInstance();
-		try {
-			ps.modifyUser(user);			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-	
-	
+		
 }
