@@ -60,7 +60,7 @@ public class LoginServlet extends HttpServlet {
 		 * Check if user exist in DB
 		 */
 		if (getCurrentUser() == null) {
-			request.setAttribute("message", "<div class=\"error\"> ERROR: Requested field is empty.  </div>");
+			request.setAttribute("message", "<div class=\"error\"> ERROR: E-mail or password is incorrect. </div>");
 			doGet(request, response);
 			return;
 		}
