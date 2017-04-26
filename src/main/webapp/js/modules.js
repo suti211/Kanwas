@@ -7,6 +7,14 @@ $(document).ready(function () {
 		$.post("AddAssignmentPageServlet", { json: JSON.stringify(assignMent) }, function (response) {
 			console.log(response);
 		});
-		//asdgfsdhgdj
+	});
+	
+	$("#submit-textpage").click(function () {
+		var textpage = { title: $("#title").val(), content: $("#text").val(), published: $("input[name=status]:checked").val()};
+		console.log(textpage);
+
+		$.post("AddTextPageServlet", { json: JSON.stringify(textpage) }, function (response) {
+			console.log(response);
+		});
 	});
 });
