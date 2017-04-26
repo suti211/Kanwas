@@ -2,6 +2,8 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -15,6 +17,7 @@ import javax.servlet.http.HttpSession;
 import com.google.gson.Gson;
 
 import data.Data;
+import io.SQLConnector;
 import module.Module;
 import user.User;
 
@@ -25,26 +28,27 @@ public class CurriculumServlet extends HttpServlet {
 
 	public CurriculumServlet() {
 		super();
-		// -------FASSÁG HOGY LEGYEN VALAMI
-
-		Module m1 = new Module("NIGGERFAGGOT", "ÁP ÁP DÉ", 0, 0, 1);
-		Module m2 = new Module("DISCO DISCO", "FISZ", 1, 1, 1);
-		Module m3 = new Module("PARTY PARTY", "FASZ", 2, 2, 1);
-		Module m4 = new Module("PICSAFÜST", "SALEELUL", 3, 3, 1);
-		Module m5 = new Module("FOSPISZTOLY", "SWAWARIM", 4, 4, 1);
-
-		modul.add(m1);
-		modul.add(m2);
-		modul.add(m3);
-		modul.add(m4);
-		modul.add(m5);
-
-		// ----------FASSÁG VÉGE
+		// -------FASSï¿½G HOGY LEGYEN VALAMI
+		//
+		// Module m1 = new Module(1, "NIGGERFAGGOT", "pocs", null, 0, 0, 1);
+		// Module m2 = new Module(2, "DISCO DISCO", "FISZ", null, 1, 1, 1);
+		// Module m3 = new Module(3, "PARTY PARTY", "FASZ", null, 2, 2, 1);
+		// Module m4 = new Module(4, "PICSAFuST", "SALEELUL", null, 3, 3, 1);
+		// Module m5 = new Module(5, "FOSPISZTOLY", "SWAWARIM", null, 4, 4, 1);
+		//
+		// modul.add(m1);
+		// modul.add(m2);
+		// modul.add(m3);
+		// modul.add(m4);
+		// modul.add(m5);
+		//
+		// // ----------FASSï¿½G Vï¿½GE
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("inbound GET request(CurriculumServlet)");
+		modul = getModulesFromDB();
 
 		HttpSession session = request.getSession(false);
 		if (session == null) {
@@ -95,6 +99,7 @@ public class CurriculumServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		System.out.println("inbound POST request(CurriculumServlet)");
+		modul = getModulesFromDB();
 
 		HttpSession session = request.getSession(false);
 		if (session == null) {
@@ -118,6 +123,27 @@ public class CurriculumServlet extends HttpServlet {
 			}
 		}
 
+	}
+
+	private List<Module> getModulesFromDB() {
+		SQLConnector sqlc = new SQLConnector();
+		ResultSet rs = sqlc.getData("SELECT * FROM kanwas.modules;");
+		List<Module> modulDB = new ArrayList<>();
+		try {
+			while (rs.next()) {
+				int id = rs.getInt("id");
+				String title = rs.getString("Title");
+				String content = rs.getString("Content");
+				String type = rs.getString("Type");
+				int maxScore = rs.getInt("MaxScore");
+				int published = rs.getInt("Published");
+				int indexid = rs.getInt("IndexID");
+				modulDB.add(new Module(id, title, content, type, maxScore, published, indexid));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return modulDB;
 	}
 
 	private class ModuleComparator implements Comparator<Module> {
