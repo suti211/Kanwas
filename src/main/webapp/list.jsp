@@ -51,6 +51,8 @@ table {
 			<a href="./register"><div class="menu-item"
 									  style="border: 1px solid #000; padding: 0px 5px 0px 5px">Sign
 				Up</div></a>
+			<a href="./logout"><div class="menu-item"
+									  style="border: 1px solid #000; padding: 0px 5px 0px 5px">Logout</div></a>
 		</div>
 
 		<a href="${extraurl}"><span class="extra-menu-item">${extramenu}</span></a>
