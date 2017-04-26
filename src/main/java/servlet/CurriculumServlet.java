@@ -41,43 +41,43 @@ public class CurriculumServlet extends HttpServlet {
 			return;
 		}
 		
-		List<Module> modules = data.getModules();
-		String jsonString = null;
-		List<String> modulesTitle = new ArrayList<>();
-		
-		modules.sort(new ModuleComparator());
-		System.out.println("Sorted modules:");
-		System.out.println(data.getModules());
-		
-
-		if (modules.size() > 0 ) {
-			for (Module module : modules) {
-				if(user.getRole().equals("mentor")){
-					modulesTitle.add(module.getTitle());
-					modulesTitle.add(module.getContent());
-				}
-				else{
-					if(module.isPublished()==1){
-						modulesTitle.add(module.getTitle());
-						modulesTitle.add(module.getContent());
-					}
-				}
-			}
-			jsonString = new Gson().toJson(modules);
-		}
-		else{
-			System.out.println("data.getModules() is NULL!");
-		}
-
-		response.setContentType("application/json");
-		PrintWriter out = response.getWriter();
-		if (jsonString != null){
-			System.out.println(jsonString);
-			out.print(jsonString);
-		}
-		else
-			System.out.println("jsonString is NULL!");
-
+//		List<Module> modules = data.getModules();
+//		String jsonString = null;
+//		List<String> modulesTitle = new ArrayList<>();
+//		
+//		modules.sort(new ModuleComparator());
+//		System.out.println("Sorted modules:");
+//		System.out.println(data.getModules());
+//		
+//
+//		if (modules.size() > 0 ) {
+//			for (Module module : modules) {
+//				if(user.getRole().equals("mentor")){
+//					modulesTitle.add(module.getTitle());
+//					modulesTitle.add(module.getContent());
+//				}
+//				else{
+//					if(module.isPublished()==1){
+//						modulesTitle.add(module.getTitle());
+//						modulesTitle.add(module.getContent());
+//					}
+//				}
+//			}
+//			jsonString = new Gson().toJson(modules);
+//		}
+//		else{
+//			System.out.println("data.getModules() is NULL!");
+//		}
+//
+//		response.setContentType("application/json");
+//		PrintWriter out = response.getWriter();
+//		if (jsonString != null){
+//			System.out.println(jsonString);
+//			out.print(jsonString);
+//		}
+//		else
+//			System.out.println("jsonString is NULL!");
+//
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -95,19 +95,19 @@ public class CurriculumServlet extends HttpServlet {
 			System.out.println("Student tried to modify the module's order!");
 			return;
 		}
-		
-		List<Module> modules = data.getModules();
-		
-		int id = Integer.valueOf((String)request.getParameter("id"));
-		int pageIndex = Integer.valueOf((String)request.getParameter("pageIndex"));
-		System.out.println("id : " + id);
-		System.out.println("pageIndex : " + pageIndex);
-		
-		for (Module module : modules) {
-			if(module.getId() == id){
-				module.setIndex(pageIndex);
-			}
-		}
+//		
+//		List<Module> modules = data.getModules();
+//		
+//		int id = Integer.valueOf((String)request.getParameter("id"));
+//		int pageIndex = Integer.valueOf((String)request.getParameter("pageIndex"));
+//		System.out.println("id : " + id);
+//		System.out.println("pageIndex : " + pageIndex);
+//		
+//		for (Module module : modules) {
+//			if(module.getId() == id){
+//				module.setIndex(pageIndex);
+//			}
+//		}
 		
 	}
 	
