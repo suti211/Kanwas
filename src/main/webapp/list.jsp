@@ -84,6 +84,9 @@ table {
 				<div class="modal-body">
 					<p>Some text in the modal.</p>
 				</div>
+				<div>
+					<textarea name="modalarea" id="modaltextarea" cols="80" rows=10 ></textarea>
+				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				</div>
