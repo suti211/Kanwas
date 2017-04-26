@@ -3,30 +3,22 @@ package data;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import io.SQLConnector;
-import module.Module;
 import user.Mentor;
 import user.Student;
 import user.User;
 
 public class Data {
 
-	private Map<User, String> sessions = new HashMap<>();
 	private User currentUser;
-	private List<Module> modules;
-	private GypsyModules dummyList;
 
 	private SQLConnector sqlConnector = new SQLConnector();
 
 	private static Data singleton = new Data();
 
 	private Data() {
-		dummyList = new GypsyModules();
-		modules = dummyList.getModules();
 	}
 
 	public static Data newInstance() {
@@ -53,15 +45,6 @@ public class Data {
 	public void setCurrentUser(User currentUser) {
 		this.currentUser = currentUser;
 	}
-
-	public List<Module> getModules() {
-		return modules;
-	}
-
-	public void setModules(List<Module> modules) {
-		this.modules = modules;
-	}
-
 
 	private User createUserByID(String id) {
 		ResultSet rs = sqlConnector.getData("SELECT * FROM users WHERE id = '" + id + "'");
