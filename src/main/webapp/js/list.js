@@ -1,20 +1,23 @@
 function getListFromServer() {
     $.get("CurriculumServlet", function (response) {
-        var res = [];
-        res = response;
+        var res = response;
         //console.log(res);
         //console.log(res.length);
-        var submitAssignment = "<br /><button type='button' class= 'sub-button submit-button' data-toggle='modal' data-target='#submitmodal' >Submit</button>"
+        var submitAssignment = "<br /><button type='button' class= 'sub-button submit-button' data-toggle='modal' data-target='#submitmodal' id='smodal' >Submit</button>"
 
+        res.forEach(function(element) {
+            $(".generatable").append("<li>" + element.title + "<div class=\"grab\" name=\"" + element.id + "\"><i class=\"fa fa-bars\" aria-hidden=\"true\"></i></div><div class=\"list-content\">" + element.content + submitAssignment + "</div></li>");
+            $(".sub-button").click(function () {
+                console.log("IrjkiValamit");
+                //$(".modal-title").html(element.title);
+                //$(".modal-body").html(element.content);
+        })
 
-        for (var i = 0; i < res.length; i++) {
-           res[i].content = res[i].content + "\n" + submitAssignment;
-            $(".generatable").append("<li>" + res[i].title + "<div class=\"grab\" name=\"" + res[i].id + "\"><i class=\"fa fa-bars\" aria-hidden=\"true\"></i></div><div class=\"list-content\">" + res[i].content + "</div></li>");
-            //(res[i].content).append(submitAssignment).end();
-        }
-
+        })
+        //($(".active")[0].innerText.split("\n")[0]);
 
         sortableList();
+        //addEventListenerToAnswerButton();
     });
 
 }
@@ -47,6 +50,10 @@ function sortableList() {
 
             if (dragged == false) {
 
+                console.log($(this)[0].innerText.split("\n")[0]);
+                $(".modal-title").html($(this)[0].innerText.split("\n")[0]);
+                $(".modal-body").html($(this)[0].innerText.split("\n")[1]);
+
                 if ($(this).hasClass("active")) {
                     console.log("faszt");
                     $(this).removeClass("active");
@@ -64,7 +71,7 @@ function sortableList() {
 
 };
 
-$(document).ready(function () {
-    getListFromServer();
-});
 
+$(document).ready(function () {
+   getListFromServer();
+});
