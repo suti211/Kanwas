@@ -52,9 +52,10 @@ table {
 
 
 	<div class="main-window page-item">
+
 		
 			<span style="font-size: 24px"> <input type="text"
-				class="assignment-input" id="title" placeholder="Type in title...">
+				class="assignment-input" id="title" name="title" placeholder="Type in title...">
 			</span>
 			<div
 				style="padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, 0.5)">
@@ -65,14 +66,14 @@ table {
 					style="margin-top: 10px" cols="50" rows="10"
 					placeholder="Type your question..."></textarea>
 				<div style="font-size: 15px; margin-left: 20px; width: 15%">
-					Points: <input type="number" class="points" id="points">
+					Points: <input type="number" class="points" id="points" name="points">
 				</div>
 
 				<div>
 					<div
 						style="float: right; font-size: 15px; width: 125px; display: inline">
-						<input type="radio" name="status" value="Unpublished" checked>Unpublished
-						<input type="radio" name="status" value="Published">Published
+						<input type="radio" name="status" value="0" checked>Unpublished
+						<input type="radio" name="status" value="1">Published
 					</div>
 					<button id="submit-assignment" class="button submit-button">Submit
 					</button>

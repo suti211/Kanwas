@@ -1,7 +1,7 @@
 
 $(document).ready(function () {
 	$("#submit-assignment").click(function () {
-		var assignMent = { title: $("#title").val(), question: $("#question").val(), maxScore: $("#points").val(), published: $("#published").val() };
+		var assignMent = { title: $("#title").val(), content: $("#question").val(), maxScore: $("#points").val(), published: $("input[name=status]:checked").val()};
 		console.log(assignMent);
 
 		$.post("AddAssignmentPageServlet", { json: JSON.stringify(assignMent) }, function (response) {

@@ -16,6 +16,15 @@ public class Assignment extends Module {
 		this.answeredStudents = answeredUsers;
 		this.published = published;
 	}
+	public Assignment(String title, String content, int id, int maxScore, int published)
+	{
+		super(title, content, id, maxScore, published);
+		this.maxScore = maxScore;
+	}
+
+	public int getMaxScore() {
+		return maxScore;
+	}
 
 	public void setAnswer(String answer) {
 		this.answer = answer;
