@@ -30,21 +30,16 @@ public class AuthenticationFilter implements Filter {
 
 		String path = ((HttpServletRequest) req).getRequestURI();
 
-		if (path.startsWith("/Kanwas/login") || path.startsWith("/Kanwas/index") || path.startsWith("/Kanwas/register")) {
-			chain.doFilter(request, response);
-			System.out.println("Login/index/register oldalon nincs szûrés!");
+		if (session == null) {
+			res.sendRedirect("/Kanwas/login");
+			System.out.println("A gyökér nincs bejelentkezve!");
 		} else {
-			if (session == null) {
-				res.sendRedirect("./login");
-				System.out.println("A gyökér nincs bejelentkezve!");
+			if (session.getAttribute("user") == null) {
+				res.sendRedirect("/Kanwas/login");
+				System.out.println("A gyökér nincs bejelentkezve, de van valami sessionje!");
 			} else {
-				if (session.getAttribute("user") == null) {
-					res.sendRedirect("./login");
-					System.out.println("A gyökér nincs bejelentkezve, de van valami sessionje!");
-				} else {
-					System.out.println("A gyökér be van jelentkezve!");
-					chain.doFilter(request, response);
-				}
+				System.out.println("A gyökér be van jelentkezve!");
+				chain.doFilter(request, response);
 			}
 		}
 

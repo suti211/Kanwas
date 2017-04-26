@@ -38,7 +38,11 @@ public class RegisterServlet extends HttpServlet {
         role = request.getParameter("role");
         
         Data data = Data.newInstance();
-        User currentUser = (User)request.getSession(false).getAttribute("user");
+        HttpSession session = request.getSession(false);
+        User currentUser = null;
+        if(session != null){
+        	currentUser = (User)session.getAttribute("user");
+        }
 //        User currentUser = data.getCurrentUser(data.getCookie(request));
 		if (currentUser == null)
 		{

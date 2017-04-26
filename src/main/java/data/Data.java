@@ -64,7 +64,7 @@ public class Data {
 
 
 	private User createUserByID(String id) {
-		ResultSet rs = sqlConnector.getData("SELECT * FROM Users WHERE id = '" + id + "'");
+		ResultSet rs = sqlConnector.getData("SELECT * FROM users WHERE id = '" + id + "'");
 		User user = null;
 		try {
 
@@ -88,7 +88,7 @@ public class Data {
 	}
 
 	public User getUserByEmail(String emailAddress) {
-		ResultSet rs = sqlConnector.getData("SELECT id FROM USers WHERE Email = '" + emailAddress + "'");
+		ResultSet rs = sqlConnector.getData("SELECT id FROM users WHERE Email = '" + emailAddress + "'");
 		User user = null;
 
 		try {
@@ -103,7 +103,7 @@ public class Data {
 	}
 
 	public boolean checkUserExist(String email) {
-		ResultSet rs = sqlConnector.getData("SELECT id FROM users WHERE email = '" + email + "' LIMIT 1");
+		ResultSet rs = sqlConnector.getData("SELECT id FROM users WHERE Email = '" + email + "' LIMIT 1");
 		try {
 
 			if (!rs.next()) {
