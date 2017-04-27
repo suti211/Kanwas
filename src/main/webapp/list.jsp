@@ -90,10 +90,27 @@ table {
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				</div>
+				<button id="submit-assignment" class="button submit-button">Submit</button>
 			</div>
 		</div>
-
+	</div>
 	<div style="text-align: center; color: #fff; margin-top: 5px;">
 		Help &#9679; About &#9679; Terms and Conditions</div>
+	<script>
+		$(document).ready(function () {
+			$("#submit-assignment").click(function () {
+				$.ajax({
+					type: "post",
+					url:"AddAnswerServlet",
+					data: {
+					    txt1: $("#modaltextarea").val()
+					},
+					success: function (result) {
+						console.log("jejö");
+                    }
+				})
+            })
+        })
+	</script>
 </body>
 </html>
