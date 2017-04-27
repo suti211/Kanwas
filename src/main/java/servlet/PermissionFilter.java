@@ -38,6 +38,8 @@ public class PermissionFilter implements Filter {
 			if(user != null){
 				if(user.getRole().equals("student")){
 					res.sendRedirect("./accesdenied.jsp");
+				} else {
+					chain.doFilter(request, response);
 				}
 			}
 		}
