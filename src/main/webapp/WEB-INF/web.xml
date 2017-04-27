@@ -130,4 +130,19 @@
 		<filter-name>AuthenticationFilter</filter-name>
 		<url-pattern>/profile</url-pattern>
 	</filter-mapping>
+	
+	<filter>
+		<filter-name>PermissionFilter</filter-name>
+		<filter-class>servlet.PermissionFilter</filter-class>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>PermissionFilter</filter-name>
+		<url-pattern>/assignment.jsp</url-pattern>
+	</filter-mapping>
+	
+	<filter-mapping>
+		<filter-name>PermissionFilter</filter-name>
+		<url-pattern>/textpage.jsp</url-pattern>
+	</filter-mapping>
 </web-app>

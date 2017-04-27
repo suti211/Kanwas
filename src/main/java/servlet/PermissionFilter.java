@@ -12,41 +12,43 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class AuthenticationFilter implements Filter {
+import user.User;
+
+public class PermissionFilter implements Filter {
 
 	@Override
-	public void init(FilterConfig arg0) throws ServletException {
+	public void init(FilterConfig filterConfig) throws ServletException {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
+		// TODO Auto-generated method stub
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
 
 		HttpSession session = req.getSession(false);
-
-		if (session == null) {
-			res.sendRedirect("/Kanwas/login");
-			System.out.println("A gyökér nincs bejelentkezve!");
-		} else {
-			if (session.getAttribute("user") == null) {
-				res.sendRedirect("/Kanwas/login");
-				System.out.println("A gyökér nincs bejelentkezve, de van valami sessionje!");
-			} else {
-				System.out.println("A gyökér be van jelentkezve!");
-				chain.doFilter(request, response);
+		
+		User user = null;
+		if(session != null){
+			user = (User) session.getAttribute("user");
+			
+			if(user != null){
+				if(user.getRole().equals("student")){
+					res.sendRedirect("./accesdenied.jsp");
+				} else {
+					chain.doFilter(request, response);
+				}
 			}
 		}
-
 	}
 
 	@Override
 	public void destroy() {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 }
