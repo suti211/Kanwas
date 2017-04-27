@@ -26,7 +26,7 @@ public class Data {
 	}
 
 	public List<User> getUserList() {
-		ResultSet rs = sqlConnector.getData("SELECT id FROM Users");
+		ResultSet rs = sqlConnector.getData("SELECT id FROM users");
 		
 		List<User> users = new ArrayList<>();
 		try {
