@@ -3,7 +3,7 @@ package servlet;
 import com.google.gson.Gson;
 import com.mysql.cj.api.Session;
 import io.SQLConnector;
-import module.Assignment;
+import module.Module;
 import user.User;
 
 import javax.servlet.ServletException;
@@ -13,35 +13,42 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Tamás Ferenc on 2017. 04. 26..
  */
-@WebServlet(name = "AddAnswerServlet")
 public class AddAnswerServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
-
+        HttpSession session = request.getSession(false);
+        User u =(User) session.getAttribute("user");
+        SQLConnector sqlConnector = new SQLConnector();
+        ResultSet rs = sqlConnector.getData("SELECT * FROM kanwas.users;");
+        int id = 0;
         try {
-            SQLConnector sqlConnector = new SQLConnector();
+            while (rs.next()) {
+                if (rs.getString("Email").equals(u.getEmailAddress())) {
+                    id = rs.getInt("id");
+                }
 
-            String jsonString = request.getParameter("json");
-            System.out.println(jsonString);
-            Assignment m = new Gson().fromJson(jsonString, Assignment.class);
-            System.out.println(m);
+                //String jsonString = request.getParameter("json");
+                //Module m = new Gson().fromJson(jsonString, Module.class);
+                System.out.println(id);
+                System.out.println("csatlakozás...");
 
-
-            String answer = request.getParameter("modalarea");
-            System.out.println(answer);
-            System.out.println("csatlakozás...");
-            HttpSession session = request.getSession(false);
-            User u =(User) session.getAttribute("user");
-            System.out.println("csatlakozás ok");
-            sqlConnector.sendQuery("INSERT INTO `kanwas`.`answers`(`Author`,`Content`,`Published`) VALUES(" +"'"+ u.getFullName()+"'"+","+"'"+ request.getParameter("txt1")+"'"+","+ "'"+m.isPublished()+"'"+")");
-            sqlConnector.sendQuery("SET SQL_SAFE_UPDATES = 0;" );
-            sqlConnector.sendQuery("UPDATE modules SET IndexID = id WHERE IndexID is null and id is not null");
-
-        }catch (Exception e) {
+                System.out.println("csatlakozás ok");
+                System.out.println(u.getFullName());
+                System.out.println(request.getParameter("txt1"));
+                sqlConnector.sendQuery("INSERT INTO `kanwas`.`answers`(`Author`,`Content`) VALUES(" + "'" +id + "'"+","+"'" +request.getParameter("txt1") + "'" + ")");
+                sqlConnector.sendQuery("SET SQL_SAFE_UPDATES = 0;");
+                sqlConnector.sendQuery("UPDATE modules SET IndexID = id WHERE IndexID is null and id is not null");
+            }
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
     }
