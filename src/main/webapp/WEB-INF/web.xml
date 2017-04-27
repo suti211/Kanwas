@@ -130,4 +130,15 @@
 		<filter-name>AuthenticationFilter</filter-name>
 		<url-pattern>/profile</url-pattern>
 	</filter-mapping>
+
+	<servlet>
+		<display-name>AddAnswerServlet</display-name>
+		<servlet-name>AddAnswerServlet</servlet-name>
+		<servlet-class>servlet.AddAnswerServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>AddAnswerServlet</servlet-name>
+		<url-pattern>/AddAnswerServlet</url-pattern>
+	</servlet-mapping>
 </web-app>
