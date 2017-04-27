@@ -52,29 +52,11 @@ public class UserProfileServlet extends HttpServlet {
 			// TODO: handle exception
 		}
 		
+		request.setAttribute("fullname", currentUser.getFullName());
+		request.setAttribute("email", currentUser.getEmailAddress());
+		request.setAttribute("role", currentUser.getRole().toUpperCase());
+		request.setAttribute("address", request.getRemoteAddr());
 		
-		
-		
-		String tableContent = "<table>" + 
-				"<tbody>" + 
-						"<tr class=\"head\">" + 
-						"<td> <b>Name</b> </td>" + 
-						"<td> <b>E-Mail</b> </td>" + 
-						"<td> <b>Role</b> </td>" + 
-						"</tr>";
-		
-		tableContent += "<tr>" +
-				"<td>" + currentUser.getFullName() + "</td>"+
-				"<td>" + currentUser.getEmailAddress() + "</td>" + 
-				"<td>" + currentUser.getRole() + "</td>" + 
-				"</tr>";
-
-		tableContent += "</tbody>" + 
-					"</table>";
-		
-		
-		
-		request.setAttribute("tableContent", tableContent);
 		request.setAttribute("fullname", currentUser.getFullName());
 		request.getRequestDispatcher("/profile.jsp").forward(request, response);
 	}
