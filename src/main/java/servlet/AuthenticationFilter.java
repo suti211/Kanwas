@@ -28,8 +28,6 @@ public class AuthenticationFilter implements Filter {
 
 		HttpSession session = req.getSession(false);
 
-		String path = ((HttpServletRequest) req).getRequestURI();
-
 		if (session == null) {
 			res.sendRedirect("/Kanwas/login");
 			System.out.println("A gyökér nincs bejelentkezve!");
