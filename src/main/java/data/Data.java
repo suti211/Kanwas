@@ -13,9 +13,7 @@ import user.User;
 public class Data {
 
 	private User currentUser;
-
 	private SQLConnector sqlConnector = new SQLConnector();
-
 	private static Data singleton = new Data();
 
 	private Data() {
@@ -27,21 +25,20 @@ public class Data {
 
 	public List<User> getUserList() {
 		ResultSet rs = sqlConnector.getData("SELECT id FROM Users");
-		
+
 		List<User> users = new ArrayList<>();
 		try {
-			while ( rs.next() )
-			{
+			while (rs.next()) {
 				users.add(createUserByID(rs.getString(1)));
 			}
 		} catch (SQLException e) {
 			System.out.println("Error @ getUSerList: " + e.getMessage());
 			e.printStackTrace();
 		}
-		
+
 		return users;
 	}
-	
+
 	public void setCurrentUser(User currentUser) {
 		this.currentUser = currentUser;
 	}
@@ -64,7 +61,6 @@ public class Data {
 				return user;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return user;
@@ -88,17 +84,13 @@ public class Data {
 	public boolean checkUserExist(String email) {
 		ResultSet rs = sqlConnector.getData("SELECT id FROM users WHERE Email = '" + email + "' LIMIT 1");
 		try {
-
 			if (!rs.next()) {
 				return false;
 			}
 		} catch (SQLException e) {
-
 			System.out.println("Error @ RegisterServlet: Checking if user exist: \n" + e.getMessage());
 			e.printStackTrace();
-
 		}
-
 		return true;
 	}
 

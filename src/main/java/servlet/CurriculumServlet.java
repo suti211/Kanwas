@@ -18,6 +18,7 @@ import com.google.gson.Gson;
 
 import data.Data;
 import io.SQLConnector;
+import io.SQLModuleManager;
 import module.Module;
 import user.User;
 
@@ -25,30 +26,16 @@ public class CurriculumServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Data data = Data.newInstance();
 	private List<Module> modul = new ArrayList<>();
+	private SQLModuleManager sqlModuleManager = new SQLModuleManager();
 
 	public CurriculumServlet() {
 		super();
-		// -------FASS�G HOGY LEGYEN VALAMI
-		//
-		// Module m1 = new Module(1, "NIGGERFAGGOT", "pocs", null, 0, 0, 1);
-		// Module m2 = new Module(2, "DISCO DISCO", "FISZ", null, 1, 1, 1);
-		// Module m3 = new Module(3, "PARTY PARTY", "FASZ", null, 2, 2, 1);
-		// Module m4 = new Module(4, "PICSAFuST", "SALEELUL", null, 3, 3, 1);
-		// Module m5 = new Module(5, "FOSPISZTOLY", "SWAWARIM", null, 4, 4, 1);
-		//
-		// modul.add(m1);
-		// modul.add(m2);
-		// modul.add(m3);
-		// modul.add(m4);
-		// modul.add(m5);
-		//
-		// // ----------FASS�G V�GE
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println("inbound GET request(CurriculumServlet)");
-		modul = getModulesFromDB();
+		modul = sqlModuleManager.getModulesFromDB();
 
 		HttpSession session = request.getSession(false);
 		if (session == null) {
@@ -62,7 +49,7 @@ public class CurriculumServlet extends HttpServlet {
 		}
 
 		String jsonString = null;
-		List<String> modulesTitle = new ArrayList<>();
+		List<Module> modulesToSend = new ArrayList<>();
 
 		modul.sort(new ModuleComparator());
 		System.out.println("Sorted modules:");
@@ -71,16 +58,14 @@ public class CurriculumServlet extends HttpServlet {
 		if (modul.size() > 0) {
 			for (Module module : modul) {
 				if (user.getRole().equals("mentor")) {
-					modulesTitle.add(module.getTitle());
-					modulesTitle.add(module.getContent());
+					modulesToSend.add(module);
 				} else {
 					if (module.isPublished() == 1) {
-						modulesTitle.add(module.getTitle());
-						modulesTitle.add(module.getContent());
+						modulesToSend.add(module);
 					}
 				}
 			}
-			jsonString = new Gson().toJson(modul);
+			jsonString = new Gson().toJson(modulesToSend);
 		} else {
 			System.out.println("data.getModules() is NULL!");
 		}
@@ -99,7 +84,7 @@ public class CurriculumServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		System.out.println("inbound POST request(CurriculumServlet)");
-		modul = getModulesFromDB();
+		modul = sqlModuleManager.getModulesFromDB();
 		SQLConnector sqlc = new SQLConnector();
 
 		HttpSession session = request.getSession(false);
@@ -123,27 +108,6 @@ public class CurriculumServlet extends HttpServlet {
 			}
 		}
 
-	}
-
-	private List<Module> getModulesFromDB() {
-		SQLConnector sqlc = new SQLConnector();
-		ResultSet rs = sqlc.getData("SELECT * FROM kanwas.modules;");
-		List<Module> modulDB = new ArrayList<>();
-		try {
-			while (rs.next()) {
-				int id = rs.getInt("id");
-				String title = rs.getString("Title");
-				String content = rs.getString("Content");
-				String type = rs.getString("Type");
-				int maxScore = rs.getInt("MaxScore");
-				int published = rs.getInt("Published");
-				int indexid = rs.getInt("IndexID");
-				modulDB.add(new Module(id, title, content, type, maxScore, published, indexid));
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return modulDB;
 	}
 
 	private class ModuleComparator implements Comparator<Module> {

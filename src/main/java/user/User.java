@@ -14,17 +14,6 @@ public abstract class User {
 		this.emailAddress = emailAddress;
 		this.role = role;
 		this.password = password;
-		
-		// swap this to sql update : addToLocalDB(this);
-	}
-	
-	public void changeRole(){
-		if(role.equals("student"))
-			role = "mentor";
-		else
-			role = "student";
-		
-		// swap this to sql update : modifyToLocalDB(this);
 	}
 	
 	public String getPassword() {
@@ -48,18 +37,6 @@ public abstract class User {
 		return firstName + " " + lastName;
 	}
 	
-	public void setFirstName(String name) {
-		this.firstName = name;
-
-		// swap this to sql update : modifyToLocalDB(this);
-	}
-	
-	public void setLastName(String name) {
-		this.lastName = name;
-
-		// swap this to sql update : modifyToLocalDB(this);
-	}
-
 	public String getEmailAddress() {
 		return emailAddress;
 	}

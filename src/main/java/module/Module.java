@@ -24,48 +24,20 @@ public class Module {
 		return id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
-
 	public String getTitle() {
 		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
 	}
 
 	public String getContent() {
 		return content;
 	}
 
-	public void setContent(String content) {
-		this.content = content;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
 	public int getMaxScore() {
 		return MaxScore;
 	}
 
-	public void setMaxScore(int maxScore) {
-		MaxScore = maxScore;
-	}
-
 	public int isPublished() {
 		return published;
-	}
-
-	public void setPublished(int published) {
-		this.published = published;
 	}
 
 	public int getIndex() {
