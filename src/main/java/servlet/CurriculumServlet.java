@@ -49,6 +49,7 @@ public class CurriculumServlet extends HttpServlet {
 			throws ServletException, IOException {
 		System.out.println("inbound GET request(CurriculumServlet)");
 		modul = getModulesFromDB();
+		List<Module> modulesToSend = new ArrayList<>();
 
 		HttpSession session = request.getSession(false);
 		if (session == null) {
@@ -62,7 +63,6 @@ public class CurriculumServlet extends HttpServlet {
 		}
 
 		String jsonString = null;
-		List<String> modulesTitle = new ArrayList<>();
 
 		modul.sort(new ModuleComparator());
 		System.out.println("Sorted modules:");
@@ -71,16 +71,14 @@ public class CurriculumServlet extends HttpServlet {
 		if (modul.size() > 0) {
 			for (Module module : modul) {
 				if (user.getRole().equals("mentor")) {
-					modulesTitle.add(module.getTitle());
-					modulesTitle.add(module.getContent());
+					modulesToSend.add(module);
 				} else {
 					if (module.isPublished() == 1) {
-						modulesTitle.add(module.getTitle());
-						modulesTitle.add(module.getContent());
+						modulesToSend.add(module);
 					}
 				}
 			}
-			jsonString = new Gson().toJson(modul);
+			jsonString = new Gson().toJson(modulesToSend);
 		} else {
 			System.out.println("data.getModules() is NULL!");
 		}
