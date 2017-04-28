@@ -12,6 +12,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import io.SQLConnector;
+import io.SQLModuleManager;
 import module.Module;
 import user.User;
 
@@ -45,17 +46,8 @@ public class AddTextPageServlet extends HttpServlet {
 			Gson gson = new GsonBuilder().setPrettyPrinting().create();
 			Module textpage = gson.fromJson(jsonString, Module.class);
 			
-			SQLConnector sqlConnector = new SQLConnector();
-			sqlConnector.sendQuery("INSERT INTO `kanwas`.`modules`(`Title`,`Content`,`Type`,`MaxScore`,`Published`) "
-					+ "VALUES(" +"'"
-					+ textpage.getTitle()+"'"+","+"'"
-					+ textpage.getContent()+"'"+","+"'"
-					+"text"+"'"+","+"'"
-					+"0"+"'"+","+ "'"
-					+textpage.isPublished()+"'"+")");
-			
-			sqlConnector.sendQuery("SET SQL_SAFE_UPDATES = 0");
-			sqlConnector.sendQuery("UPDATE modules SET IndexID = id WHERE IndexID is null and id is not null");	
+			SQLModuleManager sqlManager = new SQLModuleManager();
+			sqlManager.sendTextPageToDB(textpage);
 			
 		}
 		else{
